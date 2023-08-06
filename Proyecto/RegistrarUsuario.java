@@ -43,7 +43,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Gigi", 1, 60)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registro");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 380, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 380, -1));
 
         Cancelar.setText("Cancelar");
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -51,7 +51,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 CancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, 90, 30));
+        getContentPane().add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 90, 30));
 
         Aceptar.setText("Aceptar");
         Aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -59,16 +59,16 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 AceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(Aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 90, 30));
+        getContentPane().add(Aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 90, 30));
 
         jLabel2.setText("Nombre de Usuario: ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 120, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 120, -1));
 
         jLabel3.setText("Contraseña: ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 110, -1));
-        getContentPane().add(NombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 180, -1));
-        getContentPane().add(ContraseñaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 180, -1));
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 630));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 110, -1));
+        getContentPane().add(NombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 180, -1));
+        getContentPane().add(ContraseñaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 180, -1));
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

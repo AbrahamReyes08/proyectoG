@@ -35,37 +35,47 @@ public class MenuInicial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Gigi", 1, 60)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Menu Inicial");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 410, 90));
+        jLabel1.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 3, 100)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("GHOSTS");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 410, 90));
 
+        Registro.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 1, 24)); // NOI18N
+        Registro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/registrar.png"))); // NOI18N
         Registro.setText("Registrar Usuario");
+        Registro.setToolTipText("");
+        Registro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistroActionPerformed(evt);
             }
         });
-        getContentPane().add(Registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, 130, 40));
+        getContentPane().add(Registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 220, 60));
 
+        IniciarSesion.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 1, 24)); // NOI18N
+        IniciarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iniciar.png"))); // NOI18N
         IniciarSesion.setText("Iniciar Sesion");
+        IniciarSesion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         IniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IniciarSesionActionPerformed(evt);
             }
         });
-        getContentPane().add(IniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 130, 40));
+        getContentPane().add(IniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 180, 60));
 
+        Salir.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 1, 24)); // NOI18N
+        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
         Salir.setText("Salir");
+        Salir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalirActionPerformed(evt);
             }
         });
-        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 130, 40));
+        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 140, 60));
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.png"))); // NOI18N
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 950, 680));
+        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo 2.png"))); // NOI18N
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,7 +89,7 @@ public class MenuInicial extends javax.swing.JFrame {
     private void IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionActionPerformed
         IniciarSesion iniciarSesion = new IniciarSesion();
         iniciarSesion.setVisible(true);
-
+        
     }//GEN-LAST:event_IniciarSesionActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed

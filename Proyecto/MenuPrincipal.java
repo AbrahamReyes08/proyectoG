@@ -37,10 +37,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Gigi", 1, 60)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 1, 100)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Menu Principal");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 460, 90));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 460, 90));
 
         Juego.setText("Jugar Ghost");
         Juego.addActionListener(new java.awt.event.ActionListener() {
@@ -48,16 +48,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 JuegoActionPerformed(evt);
             }
         });
-        getContentPane().add(Juego, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 110, 30));
+        getContentPane().add(Juego, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 110, 30));
 
         Configuracion.setText("Configuración");
-        getContentPane().add(Configuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 110, 30));
+        getContentPane().add(Configuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 110, 30));
 
         Reportes.setText("Reportes");
-        getContentPane().add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 110, 30));
+        getContentPane().add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 110, 30));
 
         MiPerfil.setText("Mi Perfil");
-        getContentPane().add(MiPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, 110, 30));
+        getContentPane().add(MiPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 110, 30));
 
         Salir.setText("Regresar");
         Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +67,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 600, 80, 20));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo3.png"))); // NOI18N
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo 1.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 630));
 
         pack();

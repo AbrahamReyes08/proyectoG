@@ -85,7 +85,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF1C1);
 
-        BotonF1C2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma.png"))); // NOI18N
+        BotonF1C2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo1.png"))); // NOI18N
         BotonF1C2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF1C2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +94,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF1C2);
 
-        BotonF1C3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma.png"))); // NOI18N
+        BotonF1C3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo1.png"))); // NOI18N
         BotonF1C3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF1C3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +103,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF1C3);
 
-        BotonF1C4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma.png"))); // NOI18N
+        BotonF1C4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo1.png"))); // NOI18N
         BotonF1C4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF1C4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +112,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF1C4);
 
-        BotonF1C5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma.png"))); // NOI18N
+        BotonF1C5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo1.png"))); // NOI18N
         BotonF1C5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF1C5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +138,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF2C1);
 
-        BotonF2C2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma.png"))); // NOI18N
+        BotonF2C2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo1.png"))); // NOI18N
         BotonF2C2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF2C2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF2C2);
 
-        BotonF2C3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma.png"))); // NOI18N
+        BotonF2C3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo1.png"))); // NOI18N
         BotonF2C3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF2C3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +156,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF2C3);
 
-        BotonF2C4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma.png"))); // NOI18N
+        BotonF2C4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo1.png"))); // NOI18N
         BotonF2C4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF2C4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +165,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF2C4);
 
-        BotonF2C5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma.png"))); // NOI18N
+        BotonF2C5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo1.png"))); // NOI18N
         BotonF2C5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF2C5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,7 +286,8 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF5C1);
 
-        BotonF5C2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma1.png"))); // NOI18N
+        BotonF5C2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo2.png"))); // NOI18N
+        BotonF5C2.setToolTipText("");
         BotonF5C2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF5C2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,7 +296,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF5C2);
 
-        BotonF5C3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma1.png"))); // NOI18N
+        BotonF5C3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo2.png"))); // NOI18N
         BotonF5C3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF5C3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,7 +305,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF5C3);
 
-        BotonF5C4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma1.png"))); // NOI18N
+        BotonF5C4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo2.png"))); // NOI18N
         BotonF5C4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF5C4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,7 +314,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF5C4);
 
-        BotonF5C5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma1.png"))); // NOI18N
+        BotonF5C5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo2.png"))); // NOI18N
         BotonF5C5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF5C5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,7 +340,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF6C1);
 
-        BotonF6C2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma1.png"))); // NOI18N
+        BotonF6C2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo2.png"))); // NOI18N
         BotonF6C2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF6C2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -348,7 +349,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF6C2);
 
-        BotonF6C3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma1.png"))); // NOI18N
+        BotonF6C3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo2.png"))); // NOI18N
         BotonF6C3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF6C3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,7 +358,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF6C3);
 
-        BotonF6C4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma1.png"))); // NOI18N
+        BotonF6C4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo2.png"))); // NOI18N
         BotonF6C4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF6C4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,7 +367,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF6C4);
 
-        BotonF6C5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasma1.png"))); // NOI18N
+        BotonF6C5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo2.png"))); // NOI18N
         BotonF6C5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BotonF6C5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -400,9 +401,9 @@ public class Juego extends javax.swing.JFrame {
         LabelJug2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Jugador 2", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gigi", 1, 14))); // NOI18N
         getContentPane().add(LabelJug2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 370, 110, 180));
 
-        LabelTurno.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        LabelTurno.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 14)); // NOI18N
         LabelTurno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelTurno.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "TURNO ACTUAL", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gigi", 1, 14))); // NOI18N
+        LabelTurno.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "TURNO ACTUAL", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gill Sans MT Ext Condensed Bold", 1, 14))); // NOI18N
         getContentPane().add(LabelTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 180, 40));
 
         LabelJug1.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -411,6 +412,8 @@ public class Juego extends javax.swing.JFrame {
         LabelJug1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         LabelJug1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Jugador 1", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gigi", 1, 14))); // NOI18N
         getContentPane().add(LabelJug1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, 180));
+
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo 3.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 620));
 
         pack();
@@ -420,7 +423,6 @@ public class Juego extends javax.swing.JFrame {
         int respuesta = JOptionPane.showConfirmDialog(this, "¿Estás seguro que quieres rendirte?", "Confirmar rendición", JOptionPane.YES_NO_OPTION);
     
         if (respuesta == JOptionPane.YES_OPTION) {
-            // Si el usuario elige "Sí" (YES_OPTION), entonces se rendirá.
             MenuPrincipal menuPrincipal = new MenuPrincipal();
             menuPrincipal.setVisible(true);
             this.dispose();

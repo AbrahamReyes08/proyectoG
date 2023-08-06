@@ -8,9 +8,14 @@ package Proyecto;
  *
  * @author dell
  */
-public class Main {
+public class AbrirMenus {
+    static Juego juego=new Juego();
+    
+    public static void abrirJuego() {
+        juego.setVisible(true);
+    }
 
-    public static void main(String[] args) {
-        Controlador controlador=new Controlador();
+    public static void cerrarJuego() {
+        juego.dispose();
     }
 }

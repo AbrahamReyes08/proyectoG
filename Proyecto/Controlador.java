@@ -24,6 +24,8 @@ public class Controlador implements ActionListener{
     private String posicionAntigua = null;
     private String posicionNueva = null;
     private String posicionActual;
+    private String posicionSalida=null;
+    private String posTablero;
 
     private int contadorAmalos;
     private int contadorAbuenos;
@@ -36,8 +38,7 @@ public class Controlador implements ActionListener{
     
     public Controlador() {
         iniciarTablero();
-        Juego juego=new Juego();
-        juego.setVisible(true);
+        AbrirMenus.abrirJuego();
         añadirActionEvents();
         movimientos= new Movimientos();
         Juego.LabelTurno.setText(turno);
@@ -132,7 +133,6 @@ public class Controlador implements ActionListener{
                 posicionNueva = getBotonPosicionString(ae.getSource());
                 if (casillaDisponible(posicionAntigua,posicionNueva)){
                     cambiarFichas(posicionAntigua, posicionNueva);
-                    comprobarGane3(posicionAntigua,posicionNueva);
                     posicionNueva = null;
                     posicionAntigua = null;
                     cambiarTurno();
@@ -147,7 +147,6 @@ public class Controlador implements ActionListener{
                 posicionNueva = getBotonPosicionString(ae.getSource());
                 if (casillaDisponible(posicionAntigua, posicionNueva)){
                     cambiarFichas(posicionAntigua, posicionNueva);
-                    comprobarGane3(posicionAntigua,posicionNueva);
                     posicionNueva = null;
                     posicionAntigua = null;
                     cambiarTurno();
@@ -189,8 +188,9 @@ public class Controlador implements ActionListener{
     }
     
     private void cambiarFichas(String posAntigua, String posNueva) {
-        cambiarEnString(posAntigua,posNueva);
         cambiarEnPantalla(posAntigua,posNueva);
+        comprobarGane3(posAntigua,posNueva);
+        cambiarEnString(posAntigua,posNueva);
     }
     
     private void cambiarEnString(String posAntigua, String posNueva) {
@@ -419,6 +419,7 @@ public class Controlador implements ActionListener{
                 return true;
             } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((tablero[y2][x2].equals("SalidaB") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
+                
             } else if (posicionDerechaN.equals(posicionDerecha) && ((tablero[y2][x2].equals("SalidaB") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
             } else {
@@ -450,12 +451,12 @@ public class Controlador implements ActionListener{
         if (turnoJugador=='A'){
             if (tablero[y2][x2].charAt(0) == 'B') {
                 if (tablero[y2][x2].charAt(10) == 'B') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+ganador, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorBbuenos++;
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10) == 'M') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+ganador, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorBmalos++;
                     return true;
                 }
@@ -466,11 +467,11 @@ public class Controlador implements ActionListener{
             if (tablero[y2][x2].charAt(0) == 'A') {
                 if (tablero[y2][x2].charAt(10) == 'B') {
                     contadorAbuenos++;
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+ganador, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10) == 'M') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+ganador, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorAmalos++;
                     return true;
                 }
@@ -482,24 +483,30 @@ public class Controlador implements ActionListener{
     
     private void cambiarInfoJugador() {
         Juego.LabelJug1.setText("<html>Fantasma Buenos: "+(4-contadorAbuenos)+"\n"+"Fantasma Malos: "+(4-contadorAmalos)+"<html>");
+        Juego.LabelJug1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), jugador1, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gigi", 1, 14)));
         Juego.LabelJug2.setText("<html>Fantasma Buenos: "+(4-contadorBbuenos)+"\n"+"Fantasma Malos: "+(4-contadorBmalos)+"<html>");
+        Juego.LabelJug2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), jugador1, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gigi", 1, 14)));
     }
   
     private void comprobarGane1() {
         if ((4-contadorAbuenos)==0) {
-            JOptionPane.showMessageDialog(null, ganador+" ganaste la partida\n Tu contrincante ya no tiene fantasmas buenos.", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, ganador+" triunfo sobre "+turno+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                AbrirMenus.cerrarJuego();
         }
         if ((4-contadorBbuenos)==0) {
-            JOptionPane.showMessageDialog(null, ganador+" ganaste la partida\n Tu contrincante ya no tiene fantasmas buenos.", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, ganador+" triunfo sobre "+turno+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                AbrirMenus.cerrarJuego();
         }
     }
     
     private void comprobarGane2() {
         if ((4-contadorAmalos)==0) {
-            JOptionPane.showMessageDialog(null, "¡"+turno+" ganaste la partida!\n Ya no tienes fantasmas malos.", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, turno+" triunfo porque "+ganador+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                AbrirMenus.cerrarJuego();
         }
         if ((4-contadorBmalos)==0) {
-            JOptionPane.showMessageDialog(null,"¡"+ turno+" ganaste la partida!\n Ya no tienes fantasmas malos.", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,turno+" triunfo porque "+ganador+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                AbrirMenus.cerrarJuego();
         }
     }
     
@@ -509,15 +516,26 @@ public class Controlador implements ActionListener{
     
         int x2 = Character.getNumericValue(posicionNueva.charAt(1));
         int y2 = Character.getNumericValue(posicionNueva.charAt(0));
+        
         System.out.println(tablero[y][x]);
         System.out.println(tablero[y2][x2]);
+        
            if (tablero[y][x].equals("A_fantasmaBueno") && tablero[y2][x2].equals("SalidaB")) {
-            JOptionPane.showMessageDialog(null, ganador+" ganaste la partida\n LLegaste a la salida.", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, turno+" triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                AbrirMenus.cerrarJuego();
            } 
            
             if (tablero[y][x].equals("B_fantasmaBueno") && tablero[y2][x2].equals("SalidaA") ) {
-            JOptionPane.showMessageDialog(null, ganador+" ganaste la partida\n LLegaste a la salida.", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-           } 
-        }  
+                JOptionPane.showMessageDialog(null, turno+"Patito triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                AbrirMenus.cerrarJuego();
+            } 
+        }
+   
+        private String obtenerPos(String posTablero) {
+            int x = Character.getNumericValue(posTablero.charAt(8));
+            int y = Character.getNumericValue(posTablero.charAt(11));
+            
+            return Integer.toString(y+x);
+        }
     }
      

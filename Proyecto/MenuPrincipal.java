@@ -15,6 +15,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -42,23 +43,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Menu Principal");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 460, 90));
 
+        Juego.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
         Juego.setText("Jugar Ghost");
         Juego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JuegoActionPerformed(evt);
             }
         });
-        getContentPane().add(Juego, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 110, 30));
+        getContentPane().add(Juego, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 110, 40));
 
+        Configuracion.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
         Configuracion.setText("Configuración");
-        getContentPane().add(Configuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 110, 30));
+        getContentPane().add(Configuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 110, 40));
 
+        Reportes.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
         Reportes.setText("Reportes");
-        getContentPane().add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 110, 30));
+        getContentPane().add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 110, 40));
 
+        MiPerfil.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
         MiPerfil.setText("Mi Perfil");
-        getContentPane().add(MiPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 110, 30));
+        getContentPane().add(MiPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 110, 40));
 
+        Salir.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
         Salir.setText("Regresar");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

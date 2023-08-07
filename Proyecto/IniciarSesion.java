@@ -17,6 +17,7 @@ public class IniciarSesion extends javax.swing.JFrame {
      */
     public IniciarSesion() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -40,36 +41,42 @@ public class IniciarSesion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Gigi", 1, 60)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 1, 60)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Iniciar Sesion");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 380, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 550, -1));
 
+        Cancelar.setBackground(new java.awt.Color(255, 153, 0));
+        Cancelar.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
         Cancelar.setText("Cancelar");
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 90, 30));
+        getContentPane().add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 90, 30));
 
+        Aceptar.setBackground(new java.awt.Color(255, 153, 0));
+        Aceptar.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
         Aceptar.setText("Aceptar");
         Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(Aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 90, 30));
+        getContentPane().add(Aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 90, 30));
 
         jLabel2.setText("Nombre de Usuario: ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 120, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 120, -1));
 
         jLabel3.setText("Contraseña: ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 110, -1));
-        getContentPane().add(NombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 180, 30));
-        getContentPane().add(ContraseñaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 180, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 110, -1));
+        getContentPane().add(NombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 180, 30));
+        getContentPane().add(ContraseñaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 180, 30));
 
         Fondo.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 450));
+        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/login.png"))); // NOI18N
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

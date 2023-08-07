@@ -16,6 +16,7 @@ public class Juego extends javax.swing.JFrame {
      */
     public Juego() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
 

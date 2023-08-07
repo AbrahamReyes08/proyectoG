@@ -43,7 +43,7 @@ public class Controlador implements ActionListener{
         movimientos= new Movimientos();
         Juego.LabelTurno.setText(turno);
         cambiarInfoJugador();
-
+        añadirFichasAPantalla();
     }
     
     private void iniciarTablero() {
@@ -52,30 +52,6 @@ public class Controlador implements ActionListener{
                 tablero [i][j]="";
             }
         }
-
-        tablero[0][0]="SalidaA";
-        tablero[0][5]="SalidaA";
-        tablero[5][0]="SalidaB";
-        tablero[5][5]="SalidaB";
-        
-        tablero[0][1]="A_fantasmaBueno";
-        tablero[0][2]="A_fantasmaBueno";
-        tablero[0][3]="A_fantasmaMalo";
-        tablero[0][4]="A_fantasmaMalo";
-        tablero[1][1]="A_fantasmaBueno";
-        tablero[1][2]="A_fantasmaBueno";
-        tablero[1][3]="A_fantasmaMalo";
-        tablero[1][4]="A_fantasmaMalo";
-        
-        tablero[4][1]="B_fantasmaBueno";
-        tablero[4][2]="B_fantasmaBueno";
-        tablero[4][3]="B_fantasmaMalo";
-        tablero[4][4]="B_fantasmaMalo";
-        tablero[5][1]="B_fantasmaBueno";
-        tablero[5][2]="B_fantasmaBueno";
-        tablero[5][3]="B_fantasmaMalo";
-        tablero[5][4]="B_fantasmaMalo";
-        
     }
    
     private void añadirActionEvents() {
@@ -120,6 +96,33 @@ public class Controlador implements ActionListener{
         Juego.BotonF6C4.addActionListener(this);
         Juego.BotonF6C5.addActionListener(this);
         Juego.BotonF6C6.addActionListener(this);
+    }
+    
+    private void añadirFichasAPantalla() {
+        
+        tablero[0][0]="SalidaA";
+        tablero[0][5]="SalidaA";
+        tablero[5][0]="SalidaB";
+        tablero[5][5]="SalidaB";
+        
+        tablero[0][1]="A_fantasmaBueno";
+        tablero[0][2]="A_fantasmaBueno";
+        tablero[0][3]="A_fantasmaMalo";
+        tablero[0][4]="A_fantasmaMalo";
+        tablero[1][1]="A_fantasmaBueno";
+        tablero[1][2]="A_fantasmaBueno";
+        tablero[1][3]="A_fantasmaMalo";
+        tablero[1][4]="A_fantasmaMalo";
+        
+        tablero[4][1]="B_fantasmaBueno";
+        tablero[4][2]="B_fantasmaBueno";
+        tablero[4][3]="B_fantasmaMalo";
+        tablero[4][4]="B_fantasmaMalo";
+        tablero[5][1]="B_fantasmaBueno";
+        tablero[5][2]="B_fantasmaBueno";
+        tablero[5][3]="B_fantasmaMalo";
+        tablero[5][4]="B_fantasmaMalo";
+        
     }
     
     @Override   
@@ -531,11 +534,8 @@ public class Controlador implements ActionListener{
             } 
         }
    
-        private String obtenerPos(String posTablero) {
-            int x = Character.getNumericValue(posTablero.charAt(8));
-            int y = Character.getNumericValue(posTablero.charAt(11));
-            
-            return Integer.toString(y+x);
+        private void obtenerPos(String posicion) {
+            boton(posicion).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo1.png")));
         }
     }
      

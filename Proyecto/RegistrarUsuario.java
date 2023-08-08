@@ -38,7 +38,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         ContraseñaField = new javax.swing.JTextField();
         Fondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 1, 60)); // NOI18N
@@ -87,15 +87,8 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         int cantidadCaracteres=contraseña.length();
         boolean usuarioValido=false;
         
-        for (Usuario usuario:Usuario.getUsuarios()) {
-        if (usuario.getUsername().equals(username)) {
-            usuarioValido=true;
-            break;      
-        }
-        }
-        
-        if (usuarioValido || cantidadCaracteres !=5) { 
-            if (usuarioValido) {
+        if (Usuario.validarUsuarioUnico(username) || cantidadCaracteres !=5) { 
+            if (Usuario.validarUsuarioUnico(username)) {
                 JOptionPane.showMessageDialog(null, "El usuario no es único. Ingrese otro por favor.", "Error", JOptionPane.ERROR_MESSAGE);    
             }
             if (cantidadCaracteres!=5) {

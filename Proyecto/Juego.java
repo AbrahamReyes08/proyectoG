@@ -72,7 +72,7 @@ public class Juego extends javax.swing.JFrame {
         LabelJug1 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new java.awt.GridLayout(6, 6));
@@ -424,8 +424,6 @@ public class Juego extends javax.swing.JFrame {
         int respuesta = JOptionPane.showConfirmDialog(this, "¿Estás seguro que quieres rendirte?", "Confirmar rendición", JOptionPane.YES_NO_OPTION);
     
         if (respuesta == JOptionPane.YES_OPTION) {
-            MenuPrincipal menuPrincipal = new MenuPrincipal();
-            menuPrincipal.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_RendirteActionPerformed

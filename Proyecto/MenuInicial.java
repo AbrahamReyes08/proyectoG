@@ -82,15 +82,11 @@ public class MenuInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroActionPerformed
-    RegistrarUsuario Registro = new RegistrarUsuario();
-        Registro.setVisible(true);
-        
+        AbrirMenus.llamarRegistro();
     }//GEN-LAST:event_RegistroActionPerformed
 
     private void IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionActionPerformed
-        IniciarSesion iniciarSesion = new IniciarSesion();
-        iniciarSesion.setVisible(true);
-        
+        AbrirMenus.llamarLogin();
     }//GEN-LAST:event_IniciarSesionActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
@@ -128,7 +124,7 @@ public class MenuInicial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuInicial().setVisible(true);
+                AbrirMenus.abrirMenuInicial();
             }
         });
     }

@@ -5,9 +5,11 @@
 package Proyecto;
 
 import static Proyecto.Juego.LabelTurno;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -16,11 +18,12 @@ import javax.swing.JOptionPane;
  * @author dell
  */
 public class Controlador implements ActionListener{
-    private String[] [] tablero=new String [6][6];
+    private String[][] tablero=new String [6][6];
     private char turnoJugador='A';
     private String turno=Usuario.jugadorLog;
     private String ganador;
     private String jugador1=Usuario.jugadorLog;
+    private String jugador2;
     private String posicionAntigua = null;
     private String posicionNueva = null;
     private String posicionActual;
@@ -33,7 +36,8 @@ public class Controlador implements ActionListener{
     private int contadorBbuenos;
     
     Movimientos movimientos;
-    
+    Random random = new Random();
+
     
     
     public Controlador() {
@@ -47,11 +51,33 @@ public class Controlador implements ActionListener{
     }
     
     private void iniciarTablero() {
+        int numeroJugadores=Usuario.getNumeroUsuariosRegistrados();
+        boolean jugadorValido=false;
+
+        if (numeroJugadores > 1) {
+            while (jugadorValido==false) {
+                jugador2 = JOptionPane.showInputDialog(null, "Ingrese el nombre de usuario para el Jugador 2:", "Juego", JOptionPane.INFORMATION_MESSAGE);
+                jugadorValido = false; 
+
+                for (Usuario usuario : Usuario.getUsuarios()) {
+                    if ((usuario.getUsername().equals(jugador2) || jugador2.equals("invitado")) && !jugador2.equals(jugador1)) {
+                        jugadorValido = true;
+                        break;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Usuario inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            };
+        } else {
+            jugador2 = "Invitado";
+        }
+        
         for (int i=0;i<6;i++) {
             for (int j=0; j<6;j++) {
                 tablero [i][j]="";
             }
         }
+    
     }
    
     private void añadirActionEvents() {
@@ -104,7 +130,64 @@ public class Controlador implements ActionListener{
         tablero[0][5]="SalidaA";
         tablero[5][0]="SalidaB";
         tablero[5][5]="SalidaB";
+
+        ArrayList<String> AFantasmas = new ArrayList<>();
+        ArrayList<String> BFantasmas = new ArrayList<>();
         
+        AFantasmas.add("A_fantasmaBueno");
+        AFantasmas.add("A_fantasmaBueno");
+        AFantasmas.add("A_fantasmaBueno");
+        AFantasmas.add("A_fantasmaBueno");
+        AFantasmas.add("A_fantasmaMalo");
+        AFantasmas.add("A_fantasmaMalo");
+        AFantasmas.add("A_fantasmaMalo");
+        AFantasmas.add("A_fantasmaMalo");
+        
+        BFantasmas.add("A_fantasmaBueno");
+        BFantasmas.add("A_fantasmaBueno");
+        BFantasmas.add("A_fantasmaBueno");
+        BFantasmas.add("A_fantasmaBueno");
+        BFantasmas.add("A_fantasmaMalo");
+        BFantasmas.add("A_fantasmaMalo");
+        BFantasmas.add("A_fantasmaMalo");
+        BFantasmas.add("A_fantasmaMalo");
+        
+        ArrayList<Object> Aposiciones=new ArrayList<>();
+        ArrayList<Object> Bposiciones=new ArrayList<>();
+
+        Aposiciones.add(tablero[0][1]);
+        Aposiciones.add(tablero[0][2]);
+        Aposiciones.add(tablero[0][3]);
+        Aposiciones.add(tablero[0][4]);
+        Aposiciones.add(tablero[1][1]);
+        Aposiciones.add(tablero[1][2]);
+        Aposiciones.add(tablero[1][3]);
+        Aposiciones.add(tablero[1][4]);
+        
+        Bposiciones.add(tablero[0][1]);
+        Bposiciones.add(tablero[0][2]);
+        Bposiciones.add(tablero[0][3]);
+        Bposiciones.add(tablero[0][4]);
+        Bposiciones.add(tablero[1][1]);
+        Bposiciones.add(tablero[1][2]);
+        Bposiciones.add(tablero[1][3]);
+        Bposiciones.add(tablero[1][4]);
+        
+         /*
+        for (int i = 0; i != AFantasmas.size(); i=i+i) {
+            for (int x = 0; x < Aposiciones.size(); x++) {
+                int index = random.nextInt(AFantasmas.size());
+                int index2 =random.nextInt(Aposiciones.size());
+                
+                Aposiciones.get(index).equals(AFantasmas.get(index));
+                
+                AFantasmas.remove(index);
+                Aposiciones.remove(index2);
+            }
+        }
+        */
+        System.out.println(Aposiciones.get(2));
+        /*
         tablero[0][1]="A_fantasmaBueno";
         tablero[0][2]="A_fantasmaBueno";
         tablero[0][3]="A_fantasmaMalo";
@@ -113,7 +196,7 @@ public class Controlador implements ActionListener{
         tablero[1][2]="A_fantasmaBueno";
         tablero[1][3]="A_fantasmaMalo";
         tablero[1][4]="A_fantasmaMalo";
-        
+        */
         tablero[4][1]="B_fantasmaBueno";
         tablero[4][2]="B_fantasmaBueno";
         tablero[4][3]="B_fantasmaMalo";
@@ -454,12 +537,12 @@ public class Controlador implements ActionListener{
         if (turnoJugador=='A'){
             if (tablero[y2][x2].charAt(0) == 'B') {
                 if (tablero[y2][x2].charAt(10) == 'B') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+ganador, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorBbuenos++;
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10) == 'M') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+ganador, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorBmalos++;
                     return true;
                 }
@@ -470,11 +553,11 @@ public class Controlador implements ActionListener{
             if (tablero[y2][x2].charAt(0) == 'A') {
                 if (tablero[y2][x2].charAt(10) == 'B') {
                     contadorAbuenos++;
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+ganador, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10) == 'M') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+ganador, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorAmalos++;
                     return true;
                 }
@@ -488,7 +571,7 @@ public class Controlador implements ActionListener{
         Juego.LabelJug1.setText("<html>Fantasma Buenos: "+(4-contadorAbuenos)+"\n"+"Fantasma Malos: "+(4-contadorAmalos)+"<html>");
         Juego.LabelJug1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), jugador1, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gigi", 1, 14)));
         Juego.LabelJug2.setText("<html>Fantasma Buenos: "+(4-contadorBbuenos)+"\n"+"Fantasma Malos: "+(4-contadorBmalos)+"<html>");
-        Juego.LabelJug2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), jugador1, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gigi", 1, 14)));
+        Juego.LabelJug2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), jugador2, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gigi", 1, 14)));
     }
   
     private void comprobarGane1() {

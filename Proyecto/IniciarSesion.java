@@ -38,7 +38,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         ContraseñaField = new javax.swing.JPasswordField();
         Fondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 1, 60)); // NOI18N
@@ -87,18 +87,15 @@ public class IniciarSesion extends javax.swing.JFrame {
 
         boolean usuarioValido=false; //para poder verficar si son datos validos
 
-        for (Usuario usuario:Usuario.getUsuarios()) { //valida los datos de el arraylist creado con los que estamos ingresando
-            if (usuario.getUsername().equals(username) && usuario.getContraseña().equals(contraseña)) {
-                usuarioValido=true;
-                Usuario.jugadorLog=username;
-                break;
-            }
+        if(Usuario.validarUsuarioContraseña(username, contraseña)) {
+            Usuario.jugadorLog=username;
         }
 
-        if (usuarioValido) { //si la variable booleana se convierte en true no va a dejar ingresar al menu principal
+        if (Usuario.validarUsuarioContraseña(username, contraseña)) { 
             MenuPrincipal menuPrincipal = new MenuPrincipal();
             menuPrincipal.setVisible(true);
             this.dispose();
+            AbrirMenus.cerrarMenuInicial();
         } else { // si la variable booleana sigue siendo false nos va a tirar un mensaje para que lo volvamos a intentar
             JOptionPane.showMessageDialog(null, "Datos incorrectos. Ingrese nuevamente.", "Error", JOptionPane.ERROR_MESSAGE);
         }

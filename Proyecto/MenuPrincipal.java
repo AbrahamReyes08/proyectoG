@@ -4,6 +4,10 @@
  */
 package Proyecto;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dell
@@ -16,6 +20,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                // Abrir la ventana del menú inicial
+                AbrirMenus.abrirMenuInicial();
+            }
+        });
     }
 
     /**
@@ -35,7 +46,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Salir = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 1, 100)); // NOI18N
@@ -43,7 +54,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Menu Principal");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 460, 90));
 
-        Juego.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
+        Juego.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         Juego.setText("Jugar Ghost");
         Juego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,26 +63,41 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(Juego, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 110, 40));
 
-        Configuracion.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
+        Configuracion.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         Configuracion.setText("Configuración");
+        Configuracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfiguracionActionPerformed(evt);
+            }
+        });
         getContentPane().add(Configuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 110, 40));
 
-        Reportes.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
+        Reportes.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         Reportes.setText("Reportes");
-        getContentPane().add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 110, 40));
+        Reportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 110, 40));
 
-        MiPerfil.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
+        MiPerfil.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         MiPerfil.setText("Mi Perfil");
-        getContentPane().add(MiPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 110, 40));
+        MiPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MiPerfilActionPerformed(evt);
+            }
+        });
+        getContentPane().add(MiPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 110, 40));
 
-        Salir.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 12)); // NOI18N
+        Salir.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         Salir.setText("Regresar");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalirActionPerformed(evt);
             }
         });
-        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 600, 80, 20));
+        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 590, 100, 30));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo 1.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 630));
@@ -81,16 +107,34 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void JuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JuegoActionPerformed
         Controlador controlador=new Controlador();
-        this.dispose();
 
     }//GEN-LAST:event_JuegoActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        MenuInicial menuInicial=new MenuInicial();
-        menuInicial.setVisible(true);
-        this.dispose();
+    int opcion=JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas cerrar sesión?"
+                    , "Confirme de cierre de sesión", JOptionPane.YES_NO_OPTION);
 
+            if (opcion==JOptionPane.YES_OPTION) {
+                AbrirMenus.abrirMenuInicial();
+                this.dispose();
+            } 
     }//GEN-LAST:event_SalirActionPerformed
+
+    private void ConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfiguracionActionPerformed
+        Configuracion configuracion = new Configuracion();
+        configuracion.setVisible(true);
+    }//GEN-LAST:event_ConfiguracionActionPerformed
+
+    private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
+        Reportes reportes = new Reportes();
+        reportes.setVisible(true);
+
+    }//GEN-LAST:event_ReportesActionPerformed
+
+    private void MiPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MiPerfilActionPerformed
+        MiPerfil miPerfil = new MiPerfil();
+        miPerfil.setVisible(true);
+    }//GEN-LAST:event_MiPerfilActionPerformed
 
     /**
      * @param args the command line arguments

@@ -8,8 +8,16 @@ package Proyecto;
  *
  * @author dell
  */
-public class Main {
-    public static void main(String[] args) {
-        Controlador controlador = new Controlador();
+public class ModoJuego {
+    private static String ModoDeJuego="Normal";
+    
+    public static String getModoJuego() {
+        return ModoDeJuego;
     }
+    
+    public static void setModoJuego(String modo) {
+        ModoDeJuego=modo;
+    }
+    
+    
 }

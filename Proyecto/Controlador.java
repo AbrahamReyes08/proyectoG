@@ -19,6 +19,13 @@ import javax.swing.JOptionPane;
  */
 public class Controlador implements ActionListener{
     private String[][] tablero=new String [6][6];
+    ArrayList<String> AFantasmas = new ArrayList<>();
+    ArrayList<String> BFantasmas = new ArrayList<>();
+    ArrayList<Object> Aposiciones=new ArrayList<>();
+    ArrayList<Object> Bposiciones=new ArrayList<>();
+    ArrayList <String> numerosPosA =new ArrayList<>();
+    ArrayList <String> numerosPosB =new ArrayList<>();
+    
     private char turnoJugador='A';
     private String turno=Usuario.jugadorLog;
     private String ganador;
@@ -37,12 +44,12 @@ public class Controlador implements ActionListener{
     
     Movimientos movimientos;
     Random random = new Random();
+    Juego juego=new Juego();
 
-    
     
     public Controlador() {
         iniciarTablero();
-        AbrirMenus.abrirJuego();
+        juego.setVisible(true);
         añadirActionEvents();
         movimientos= new Movimientos();
         Juego.LabelTurno.setText(turno);
@@ -63,9 +70,10 @@ public class Controlador implements ActionListener{
                     if ((usuario.getUsername().equals(jugador2) || jugador2.equals("invitado")) && !jugador2.equals(jugador1)) {
                         jugadorValido = true;
                         break;
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Usuario inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
+                } 
+                if (jugadorValido==false) {
+                     JOptionPane.showMessageDialog(null, "Usuario no valido.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             };
         } else {
@@ -131,81 +139,68 @@ public class Controlador implements ActionListener{
         tablero[5][0]="SalidaB";
         tablero[5][5]="SalidaB";
 
-        ArrayList<String> AFantasmas = new ArrayList<>();
-        ArrayList<String> BFantasmas = new ArrayList<>();
         
-        AFantasmas.add("A_fantasmaBueno");
-        AFantasmas.add("A_fantasmaBueno");
-        AFantasmas.add("A_fantasmaBueno");
-        AFantasmas.add("A_fantasmaBueno");
-        AFantasmas.add("A_fantasmaMalo");
-        AFantasmas.add("A_fantasmaMalo");
-        AFantasmas.add("A_fantasmaMalo");
-        AFantasmas.add("A_fantasmaMalo");
+        if (ModoJuego.getModoJuego().equals("Normal")) {
+            fichasSiNormal();
+        } else if (ModoJuego.getModoJuego().equals("Expert")) {
+            fichasSiExpert();
+        } else if (ModoJuego.getModoJuego().equals("Genius")) {
+            fichasSiGenius();
+        }
         
-        BFantasmas.add("A_fantasmaBueno");
-        BFantasmas.add("A_fantasmaBueno");
-        BFantasmas.add("A_fantasmaBueno");
-        BFantasmas.add("A_fantasmaBueno");
-        BFantasmas.add("A_fantasmaMalo");
-        BFantasmas.add("A_fantasmaMalo");
-        BFantasmas.add("A_fantasmaMalo");
-        BFantasmas.add("A_fantasmaMalo");
+        numerosPosA();
+        numerosPosB();
         
-        ArrayList<Object> Aposiciones=new ArrayList<>();
-        ArrayList<Object> Bposiciones=new ArrayList<>();
-
-        Aposiciones.add(tablero[0][1]);
-        Aposiciones.add(tablero[0][2]);
-        Aposiciones.add(tablero[0][3]);
-        Aposiciones.add(tablero[0][4]);
-        Aposiciones.add(tablero[1][1]);
-        Aposiciones.add(tablero[1][2]);
-        Aposiciones.add(tablero[1][3]);
-        Aposiciones.add(tablero[1][4]);
         
-        Bposiciones.add(tablero[0][1]);
-        Bposiciones.add(tablero[0][2]);
-        Bposiciones.add(tablero[0][3]);
-        Bposiciones.add(tablero[0][4]);
-        Bposiciones.add(tablero[1][1]);
-        Bposiciones.add(tablero[1][2]);
-        Bposiciones.add(tablero[1][3]);
-        Bposiciones.add(tablero[1][4]);
         
-         /*
-        for (int i = 0; i != AFantasmas.size(); i=i+i) {
-            for (int x = 0; x < Aposiciones.size(); x++) {
+        for (int i = 0; i != AFantasmas.size(); ) {
                 int index = random.nextInt(AFantasmas.size());
-                int index2 =random.nextInt(Aposiciones.size());
-                
-                Aposiciones.get(index).equals(AFantasmas.get(index));
+                int posRandom = random.nextInt(numerosPosA.size());
+                String POS = numerosPosA.get(posRandom);
+
+                int x = Character.getNumericValue(POS.charAt(1));
+                int y = Character.getNumericValue(POS.charAt(0));
+
+                ponerImagenA(POS);
+                tablero[y][x]=AFantasmas.get(index);
                 
                 AFantasmas.remove(index);
-                Aposiciones.remove(index2);
-            }
+                numerosPosA.remove(posRandom);
         }
-        */
-        System.out.println(Aposiciones.get(2));
-        /*
-        tablero[0][1]="A_fantasmaBueno";
-        tablero[0][2]="A_fantasmaBueno";
-        tablero[0][3]="A_fantasmaMalo";
-        tablero[0][4]="A_fantasmaMalo";
-        tablero[1][1]="A_fantasmaBueno";
-        tablero[1][2]="A_fantasmaBueno";
-        tablero[1][3]="A_fantasmaMalo";
-        tablero[1][4]="A_fantasmaMalo";
-        */
-        tablero[4][1]="B_fantasmaBueno";
-        tablero[4][2]="B_fantasmaBueno";
-        tablero[4][3]="B_fantasmaMalo";
-        tablero[4][4]="B_fantasmaMalo";
-        tablero[5][1]="B_fantasmaBueno";
-        tablero[5][2]="B_fantasmaBueno";
-        tablero[5][3]="B_fantasmaMalo";
-        tablero[5][4]="B_fantasmaMalo";
         
+        for (int i = 0; i != BFantasmas.size(); ) {
+                int index = random.nextInt(BFantasmas.size());
+                int posRandom = random.nextInt(numerosPosB.size());
+                String POS = numerosPosB.get(posRandom);
+
+                int x = Character.getNumericValue(POS.charAt(1));
+                int y = Character.getNumericValue(POS.charAt(0));
+
+                ponerImagenB(POS);
+                tablero[y][x]=BFantasmas.get(index);
+                
+                BFantasmas.remove(index);
+                numerosPosB.remove(posRandom);
+        }
+        System.out.println("---------------------------");
+        System.out.println(tablero[0][1]);
+        System.out.println(tablero[0][2]);
+        System.out.println(tablero[0][3]);
+        System.out.println(tablero[0][4]);
+        System.out.println(tablero[1][1]);
+        System.out.println(tablero[1][2]);
+        System.out.println(tablero[1][3]);
+        System.out.println(tablero[1][4]);
+        System.out.println("----------------------------");
+        System.out.println(tablero[4][1]);
+        System.out.println(tablero[4][2]);
+        System.out.println(tablero[4][3]);
+        System.out.println(tablero[4][4]);
+        System.out.println(tablero[5][1]);
+        System.out.println(tablero[5][2]);
+        System.out.println(tablero[5][3]);
+        System.out.println(tablero[5][4]);
+        System.out.println("---------------------------");
     }
     
     @Override   
@@ -253,6 +248,7 @@ public class Controlador implements ActionListener{
             turnoJugador='A';
         }
         Juego.LabelTurno.setText(turno);
+        
         cambiarInfoJugador();
         comprobarGane1();
         comprobarGane2();
@@ -568,32 +564,86 @@ public class Controlador implements ActionListener{
     }
     
     private void cambiarInfoJugador() {
-        Juego.LabelJug1.setText("<html>Fantasma Buenos: "+(4-contadorAbuenos)+"\n"+"Fantasma Malos: "+(4-contadorAmalos)+"<html>");
+        if (ModoJuego.getModoJuego().equals("Normal")) {
+                Juego.LabelJug1.setText("<html>Fantasma Buenos: "+(4-contadorAbuenos)+"\n"+"Fantasma Malos: "+(4-contadorAmalos)+"<html>");
+                Juego.LabelJug2.setText("<html>Fantasma Buenos: "+(4-contadorBbuenos)+"\n"+"Fantasma Malos: "+(4-contadorBmalos)+"<html>");
+
+        } 
+        if (ModoJuego.getModoJuego().equals("Expert")) {
+                Juego.LabelJug1.setText("<html>Fantasma Buenos: "+(2-contadorAbuenos)+"\n"+"Fantasma Malos: "+(2-contadorAmalos)+"<html>");
+                Juego.LabelJug2.setText("<html>Fantasma Buenos: "+(2-contadorBbuenos)+"\n"+"Fantasma Malos: "+(2-contadorBmalos)+"<html>");
+
+        } 
+        if (ModoJuego.getModoJuego().equals("Genius")) {
+                Juego.LabelJug1.setText("<html>Fantasma Buenos: "+(1-contadorAbuenos)+"\n"+"Fantasma Malos: "+(1-contadorAmalos)+"<html>");
+                Juego.LabelJug2.setText("<html>Fantasma Buenos: "+(1-contadorBbuenos)+"\n"+"Fantasma Malos: "+(1-contadorBmalos)+"<html>");
+
+        }
         Juego.LabelJug1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), jugador1, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gigi", 1, 14)));
-        Juego.LabelJug2.setText("<html>Fantasma Buenos: "+(4-contadorBbuenos)+"\n"+"Fantasma Malos: "+(4-contadorBmalos)+"<html>");
         Juego.LabelJug2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), jugador2, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gigi", 1, 14)));
     }
   
     private void comprobarGane1() {
-        if ((4-contadorAbuenos)==0) {
-            JOptionPane.showMessageDialog(null, ganador+" triunfo sobre "+turno+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                AbrirMenus.cerrarJuego();
-        }
-        if ((4-contadorBbuenos)==0) {
-            JOptionPane.showMessageDialog(null, ganador+" triunfo sobre "+turno+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                AbrirMenus.cerrarJuego();
+        if (ModoJuego.getModoJuego().equals("Normal")) {
+                if ((4-contadorAbuenos)==0) {
+                    JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                }
+                if ((4-contadorBbuenos)==0) {
+                    JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                }
+        } else if (ModoJuego.getModoJuego().equals("Expert")) {
+                if ((2-contadorAbuenos)==0) {
+                    JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                }
+                if ((2-contadorBbuenos)==0) {
+                    JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                }
+        } else if (ModoJuego.getModoJuego().equals("Genius")) {
+                    if ((1-contadorAbuenos)==0) {
+                        JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                    }
+                    if ((1-contadorBbuenos)==0) {
+                        JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                    }
         }
     }
     
     private void comprobarGane2() {
-        if ((4-contadorAmalos)==0) {
-            JOptionPane.showMessageDialog(null, turno+" triunfo porque "+ganador+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                AbrirMenus.cerrarJuego();
+        if (ModoJuego.getModoJuego().equals("Normal")) {
+                if ((4-contadorAmalos)==0) {
+                    JOptionPane.showMessageDialog(null, jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                }
+                if ((4-contadorBmalos)==0) {
+                    JOptionPane.showMessageDialog(null,jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                }
+        } else if (ModoJuego.getModoJuego().equals("Expert")) {
+                if ((2-contadorAmalos)==0) {
+                    JOptionPane.showMessageDialog(null, jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                }
+                if ((2-contadorBmalos)==0) {
+                    JOptionPane.showMessageDialog(null,jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                }
+        } else if (ModoJuego.getModoJuego().equals("Genius")) {
+                if ((1-contadorAmalos)==0) {
+                    JOptionPane.showMessageDialog(null, jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                }
+                if ((1-contadorBmalos)==0) {
+                    JOptionPane.showMessageDialog(null,jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    juego.dispose();
+                }
         }
-        if ((4-contadorBmalos)==0) {
-            JOptionPane.showMessageDialog(null,turno+" triunfo porque "+ganador+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                AbrirMenus.cerrarJuego();
-        }
+
     }
     
    private void comprobarGane3(String posicionAntigua, String posicionNueva) {
@@ -607,18 +657,98 @@ public class Controlador implements ActionListener{
         System.out.println(tablero[y2][x2]);
         
            if (tablero[y][x].equals("A_fantasmaBueno") && tablero[y2][x2].equals("SalidaB")) {
-                JOptionPane.showMessageDialog(null, turno+" triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                AbrirMenus.cerrarJuego();
+                JOptionPane.showMessageDialog(null, jugador1+" triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                juego.dispose();
            } 
            
             if (tablero[y][x].equals("B_fantasmaBueno") && tablero[y2][x2].equals("SalidaA") ) {
-                JOptionPane.showMessageDialog(null, turno+"Patito triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                AbrirMenus.cerrarJuego();
+                JOptionPane.showMessageDialog(null, jugador2+"Patito triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                juego.dispose();
             } 
         }
    
-        private void obtenerPos(String posicion) {
+        private int obtenerPos(int POS) {
+            int x = Character.getNumericValue(posicionAntigua.charAt(1));
+            int y = Character.getNumericValue(posicionAntigua.charAt(0));
+            int POSICION=y+x;
+            return POSICION;
+        }
+   
+        private void ponerImagenA(String posicion) {
             boton(posicion).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo1.png")));
+        }
+        
+        private void ponerImagenB(String posicion) {
+            boton(posicion).setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fantasmaNuevo2.png")));
+        }   
+        
+        private void fichasSiNormal() {
+        AFantasmas.add("A_fantasmaBueno");
+        AFantasmas.add("A_fantasmaBueno");
+        AFantasmas.add("A_fantasmaBueno");
+        AFantasmas.add("A_fantasmaBueno");
+        AFantasmas.add("A_fantasmaMalo");
+        AFantasmas.add("A_fantasmaMalo");
+        AFantasmas.add("A_fantasmaMalo");
+        AFantasmas.add("A_fantasmaMalo");
+        
+        BFantasmas.add("B_fantasmaBueno");
+        BFantasmas.add("B_fantasmaBueno");
+        BFantasmas.add("B_fantasmaBueno");
+        BFantasmas.add("B_fantasmaBueno");
+        BFantasmas.add("B_fantasmaMalo");
+        BFantasmas.add("B_fantasmaMalo");
+        BFantasmas.add("B_fantasmaMalo");
+        BFantasmas.add("B_fantasmaMalo");
+        }
+        
+        private void fichasSiExpert() {
+        AFantasmas.add("A_fantasmaBueno");
+        AFantasmas.add("A_fantasmaBueno");
+        AFantasmas.add("A_fantasmaMalo");
+        AFantasmas.add("A_fantasmaMalo");
+        
+        BFantasmas.add("B_fantasmaBueno");
+        BFantasmas.add("B_fantasmaBueno");
+        BFantasmas.add("B_fantasmaMalo");
+        BFantasmas.add("B_fantasmaMalo");
+        }
+        
+        private void fichasSiGenius() {
+        AFantasmas.add("A_fantasmaBueno");
+        AFantasmas.add("A_fantasmaMalo");
+        
+        BFantasmas.add("B_fantasmaBueno");
+        BFantasmas.add("B_fantasmaMalo");
+
+        }
+        
+        private void numerosPosA() {
+            numerosPosA.add("01");
+            numerosPosA.add("02");
+            numerosPosA.add("03");
+            numerosPosA.add("04");
+            numerosPosA.add("11");
+            numerosPosA.add("12");
+            numerosPosA.add("13");
+            numerosPosA.add("14");
+            
+        }
+        
+        private void numerosPosB() {
+            numerosPosB.add("41");
+            numerosPosB.add("42");
+            numerosPosB.add("43");
+            numerosPosB.add("44");
+            numerosPosB.add("51");
+            numerosPosB.add("52");
+            numerosPosB.add("53");
+            numerosPosB.add("54");
+            
+        }
+        
+        public void cerraJUEGO() {
+            juego.dispose();
         }
     }
      

@@ -9,7 +9,8 @@ package Proyecto;
  * @author dell
  */
 public class Configuracion extends javax.swing.JFrame {
-
+    ModoJuego modoJuego = new ModoJuego();
+    
     /**
      * Creates new form Configuracion
      */
@@ -59,30 +60,55 @@ public class Configuracion extends javax.swing.JFrame {
         Expert.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         Expert.setText("Expert");
         Expert.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        Expert.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExpertMouseClicked(evt);
+            }
+        });
         Expert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExpertActionPerformed(evt);
             }
         });
-        getContentPane().add(Expert, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 274, 70, 40));
+        getContentPane().add(Expert, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 90, 40));
 
         Genius.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         Genius.setText("Genius");
         Genius.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        getContentPane().add(Genius, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 274, 70, 40));
+        Genius.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GeniusMouseClicked(evt);
+            }
+        });
+        Genius.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GeniusActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Genius, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 90, 40));
 
         Normal.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         Normal.setText("Normal");
         Normal.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        getContentPane().add(Normal, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 274, 70, 40));
+        Normal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NormalMouseClicked(evt);
+            }
+        });
+        Normal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NormalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Normal, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 90, 40));
 
         Aleatorio.setFont(new java.awt.Font("Gloucester MT Extra Condensed", 0, 18)); // NOI18N
         Aleatorio.setText("Aleatorio");
-        getContentPane().add(Aleatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 70, 40));
+        getContentPane().add(Aleatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 90, 40));
 
         Manual.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         Manual.setText("Manual");
-        getContentPane().add(Manual, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 70, 40));
+        getContentPane().add(Manual, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 90, 40));
 
         Salir.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         Salir.setText("Regresar");
@@ -100,13 +126,36 @@ public class Configuracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ExpertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExpertActionPerformed
-        // TODO add your handling code here:
+        modoJuego.setModoJuego("Expert");
+
     }//GEN-LAST:event_ExpertActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         
         this.dispose();
     }//GEN-LAST:event_SalirActionPerformed
+
+    private void NormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NormalActionPerformed
+        modoJuego.setModoJuego("Normal");
+        
+    }//GEN-LAST:event_NormalActionPerformed
+
+    private void GeniusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeniusActionPerformed
+        modoJuego.setModoJuego("Genius");
+
+    }//GEN-LAST:event_GeniusActionPerformed
+
+    private void NormalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NormalMouseClicked
+        modoJuego.setModoJuego("Normal");
+    }//GEN-LAST:event_NormalMouseClicked
+
+    private void ExpertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpertMouseClicked
+        modoJuego.setModoJuego("Expert");
+    }//GEN-LAST:event_ExpertMouseClicked
+
+    private void GeniusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GeniusMouseClicked
+        modoJuego.setModoJuego("Genius");
+    }//GEN-LAST:event_GeniusMouseClicked
 
     /**
      * @param args the command line arguments

@@ -77,20 +77,7 @@ public class Usuario {
             return false;
         }
     }
-    
-    public static void eliminarCuenta(String username, String contraseñaActual) {
-        Usuario usuarioEliminado = null;
-        for (Usuario usuario : usuarios) {
-            if (usuario.username.equals(username) && usuario.contraseña.equals(contraseñaActual)) {
-                usuarioEliminado = usuario;
-                break;
-            }
-        }
-        if (usuarioEliminado != null) {
-            usuarios.remove(usuarioEliminado);
-        }
-    }
-    
+
     public static boolean CambiarContraseña(String username, String contraseñaNueva) {
         return cambiarContraseña(usuarios.toArray(new Usuario[0]), username, contraseñaNueva,0);
     }
@@ -107,5 +94,19 @@ public class Usuario {
                 return false;
             }
         }
+    
+    public static void eliminarCuenta(String username, String contraseñaActual) {
+        Usuario usuarioEliminado = null;
+        for (Usuario usuario : usuarios) {
+            if (usuario.username.equals(username) && usuario.contraseña.equals(contraseñaActual)) {
+                usuarioEliminado = usuario;
+                break;
+            }
+        }
+        if (usuarioEliminado != null) {
+            usuarios.remove(usuarioEliminado);
+        }
+    }
+    
     }
     

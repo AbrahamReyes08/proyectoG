@@ -107,7 +107,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void JuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JuegoActionPerformed
         Controlador controlador=new Controlador();
-
     }//GEN-LAST:event_JuegoActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed

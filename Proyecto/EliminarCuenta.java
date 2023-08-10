@@ -63,10 +63,10 @@ public class EliminarCuenta extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Eliminar Cuenta");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 550, -1));
-        getContentPane().add(ContraseñaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 180, -1));
+        getContentPane().add(ContraseñaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 180, 30));
 
         jLabel2.setText("Contraseña: ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 120, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 120, 30));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/login.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

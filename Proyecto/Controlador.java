@@ -173,6 +173,7 @@ public class Controlador implements ActionListener{
                 int posRandom = random.nextInt(numerosPosB.size());
                 String POS = numerosPosB.get(posRandom);
 
+                
                 int x = Character.getNumericValue(POS.charAt(1));
                 int y = Character.getNumericValue(POS.charAt(0));
 
@@ -182,6 +183,7 @@ public class Controlador implements ActionListener{
                 BFantasmas.remove(index);
                 numerosPosB.remove(posRandom);
         }
+        
         System.out.println("---------------------------");
         System.out.println(tablero[0][1]);
         System.out.println(tablero[0][2]);
@@ -201,6 +203,7 @@ public class Controlador implements ActionListener{
         System.out.println(tablero[5][3]);
         System.out.println(tablero[5][4]);
         System.out.println("---------------------------");
+        
     }
     
     @Override   
@@ -212,26 +215,45 @@ public class Controlador implements ActionListener{
                 posicionAntigua = posicionActual;
             } else if (posicionAntigua != null) {
                 posicionNueva = getBotonPosicionString(ae.getSource());
-                if (casillaDisponible(posicionAntigua,posicionNueva)){
+                if (dimeLaCasilla(posicionAntigua).equals("A_fantasmaFake")) {
+                    if(casillaDisponibleTrampa(posicionAntigua,posicionNueva)) {
+                    cambiarFichas(posicionAntigua, posicionNueva);
+                    posicionNueva = null;
+                    posicionAntigua = null;
+                    cambiarTurno();
+                    }
+                } else {
+                if (casillaDisponible(posicionAntigua,posicionNueva) ){
                     cambiarFichas(posicionAntigua, posicionNueva);
                     posicionNueva = null;
                     posicionAntigua = null;
                     cambiarTurno();
                 }
             }
+            }
         }
     if (turnoJugador == 'B') {
             posicionActual = getBotonPosicionString(ae.getSource());
+            dimeLaCasilla(posicionActual);
             if (isCurrentPlayerPieceB(posicionActual)) {
                 posicionAntigua = posicionActual;
             } else if (posicionAntigua != null) {
                 posicionNueva = getBotonPosicionString(ae.getSource());
-                if (casillaDisponible(posicionAntigua, posicionNueva)){
+                if (dimeLaCasilla(posicionAntigua).equals("B_fantasmaFake")) {
+                    if(casillaDisponibleTrampa(posicionAntigua, posicionNueva)) {
+                    cambiarFichas(posicionAntigua, posicionNueva);
+                    posicionNueva = null;
+                    posicionAntigua = null;
+                    cambiarTurno();
+                    }
+                } else {
+                if (casillaDisponible(posicionAntigua,posicionNueva) ){
                     cambiarFichas(posicionAntigua, posicionNueva);
                     posicionNueva = null;
                     posicionAntigua = null;
                     cambiarTurno();
                 }
+            }
             }
         }
    
@@ -471,11 +493,10 @@ public class Controlador implements ActionListener{
         return false;
     }
     
-    private void dimeLaCasilla(String posicionAntigua) {
+    private String dimeLaCasilla(String posicionAntigua) {
         int x = Character.getNumericValue(posicionAntigua.charAt(1));
         int y = Character.getNumericValue(posicionAntigua.charAt(0));
-        System.out.println("x: "+x+" y: "+y);
-        System.out.println(tablero[y][x]);
+        return tablero[y][x];
     }
     
     private boolean casillaDisponible(String posicionAntigua,String posicionNueva) {
@@ -501,13 +522,12 @@ public class Controlador implements ActionListener{
                 return true;
             } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((tablero[y2][x2].equals("SalidaB") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
-                
             } else if (posicionDerechaN.equals(posicionDerecha) && ((tablero[y2][x2].equals("SalidaB") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
             } else {
             JOptionPane.showMessageDialog(null, "Movimiento invalido", "Error", JOptionPane.ERROR_MESSAGE);
-        } 
-        } 
+        }
+        }
         
         if (turnoJugador=='B'){
             if (posicionArribaN.equals(posicionArriba) && ((tablero[y2][x2].equals("SalidaA") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
@@ -518,6 +538,97 @@ public class Controlador implements ActionListener{
                 return true;
             } else if (posicionDerechaN.equals(posicionDerecha) && ((tablero[y2][x2].equals("SalidaA") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
+            }else {
+            JOptionPane.showMessageDialog(null, "Movimiento invalido", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        }  
+        
+         return false;
+    }
+    
+    private boolean casillaDisponibleTrampa(String posicionAntigua, String posicionNueva) {
+        int x = Character.getNumericValue(posicionAntigua.charAt(1));
+        int y = Character.getNumericValue(posicionAntigua.charAt(0));
+        
+        int x2 = Character.getNumericValue(posicionNueva.charAt(1));
+        int y2 = Character.getNumericValue(posicionNueva.charAt(0));
+        
+        String posAntigua = y+""+x;
+        
+        String posicionArriba=(y - 1) + "" + x;
+        String posicionAbajo=(y+1)+""+x;
+        String posicionIzquierda=y+""+(x-1);
+        String posicionDerecha=y+""+(x+1);
+        
+        String posicionArribaN=y2+ "" + x2;
+        String posicionAbajoN=y2+""+x2;
+        String posicionIzquierdaN=y2+""+x2;
+        String posicionDerechaN=y2+""+x2;
+
+        if (turnoJugador=='A'){
+           if (posicionArribaN.equals(posicionArriba) && ((tablero[y2][x2].equals("B_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+                return true;
+            } else if (posicionAbajoN.equals(posicionAbajo) && ((tablero[y2][x2].equals("B_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+                return true;
+            } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((tablero[y2][x2].equals("B_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+                return true;
+            } else if (posicionDerechaN.equals(posicionDerecha) && ((tablero[y2][x2].equals("B_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+                return true;
+            } else if (posicionArribaN.equals(posicionArriba) && tablero[y2][x2].equals("B_fantasmaBueno") || tablero[y2][x2].equals("B_fantasmaMalo")){
+                boton(posAntigua).setIcon(null);
+               JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
+                cambiarTurno();
+               return false;
+            } else if (posicionAbajoN.equals(posicionAbajo) && tablero[y2][x2].equals("B_fantasmaBueno") || tablero[y2][x2].equals("B_fantasmaMalo")){
+                boton(posAntigua).setIcon(null);
+               JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
+                cambiarTurno();
+               return false;
+            }else if (posicionIzquierdaN.equals(posicionIzquierda) && tablero[y2][x2].equals("B_fantasmaBueno") || tablero[y2][x2].equals("B_fantasmaMalo")){
+                boton(posAntigua).setIcon(null);
+               JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
+                cambiarTurno();
+               return false;
+            }else if (posicionDerechaN.equals(posicionDerecha) && tablero[y2][x2].equals("B_fantasmaBueno") || tablero[y2][x2].equals("B_fantasmaMalo")){
+                boton(posAntigua).setIcon(null);
+               JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
+                cambiarTurno();
+               return false;
+            }
+            else{
+            JOptionPane.showMessageDialog(null, "Movimiento invalido", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        }
+        
+        if (turnoJugador=='B'){
+            if (posicionArribaN.equals(posicionArriba) && ((tablero[y2][x2].equals("A_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+                return true;
+            } else if (posicionAbajoN.equals(posicionAbajo) && ((tablero[y2][x2].equals("A_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+                return true;
+            } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((tablero[y2][x2].equals("A_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+                return true;
+            } else if (posicionDerechaN.equals(posicionDerecha) && ((tablero[y2][x2].equals("A_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+                return true;
+            }else if (posicionArribaN.equals(posicionArriba) && tablero[y2][x2].equals("A_fantasmaBueno") || tablero[y2][x2].equals("A_fantasmaMalo")){
+                boton(posAntigua).setIcon(null);
+               JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
+                cambiarTurno();
+               return false;
+            } else if (posicionAbajoN.equals(posicionAbajo) && tablero[y2][x2].equals("A_fantasmaBueno") || tablero[y2][x2].equals("A_fantasmaMalo")){
+                boton(posAntigua).setIcon(null);
+               JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
+                cambiarTurno();
+               return false;
+            }else if (posicionIzquierdaN.equals(posicionIzquierda) && tablero[y2][x2].equals("A_fantasmaBueno") || tablero[y2][x2].equals("A_fantasmaMalo")){
+                boton(posAntigua).setIcon(null);
+               JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
+                cambiarTurno();
+               return false;
+            }else if (posicionDerechaN.equals(posicionDerecha) && tablero[y2][x2].equals("A_fantasmaBueno") || tablero[y2][x2].equals("A_fantasmaMalo")){
+                boton(posAntigua).setIcon(null);
+               JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
+                cambiarTurno();
+               return false;
             }else {
             JOptionPane.showMessageDialog(null, "Movimiento invalido", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -542,6 +653,10 @@ public class Controlador implements ActionListener{
                     contadorBmalos++;
                     return true;
                 }
+                if (tablero[y2][x2].charAt(10)== 'F') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                }
             }
         } 
         
@@ -555,6 +670,35 @@ public class Controlador implements ActionListener{
                 if (tablero[y2][x2].charAt(10) == 'M') {
                     JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorAmalos++;
+                    return true;
+                }
+                if (tablero[y2][x2].charAt(10)== 'F') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                }
+            }
+        }  
+         return false;
+
+    }
+    
+    private boolean TrampaComeReal(String posicionNueva) {
+        int x2 = Character.getNumericValue(posicionNueva.charAt(1));
+        int y2 = Character.getNumericValue(posicionNueva.charAt(0));
+
+        if (turnoJugador=='A'){
+            if (tablero[y2][x2].charAt(0) == 'B') {
+                if (tablero[y2][x2].charAt(10)== 'F') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                }
+            }
+        } 
+        
+        if (turnoJugador=='B'){
+            if (tablero[y2][x2].charAt(0) == 'A') {
+                if (tablero[y2][x2].charAt(10)== 'F') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
             }
@@ -717,10 +861,17 @@ public class Controlador implements ActionListener{
         private void fichasSiGenius() {
         AFantasmas.add("A_fantasmaBueno");
         AFantasmas.add("A_fantasmaMalo");
+        AFantasmas.add("A_fantasmaFake");
+        AFantasmas.add("A_fantasmaFake");
+        AFantasmas.add("A_fantasmaFake");
+        AFantasmas.add("A_fantasmaFake");        
         
         BFantasmas.add("B_fantasmaBueno");
         BFantasmas.add("B_fantasmaMalo");
-
+        BFantasmas.add("B_fantasmaFake");
+        BFantasmas.add("B_fantasmaFake");
+        BFantasmas.add("B_fantasmaFake");
+        BFantasmas.add("B_fantasmaFake");    
         }
         
         private void numerosPosA() {

@@ -9,7 +9,7 @@ package Proyecto;
  * @author dell
  */
 public class ModoJuego {
-    private static String ModoDeJuego="Normal";
+        private static String ModoDeJuego="Genius";
     
     public static String getModoJuego() {
         return ModoDeJuego;

@@ -517,7 +517,7 @@ public class Controlador implements ActionListener{
         String posicionDerechaN=y2+""+x2;
         if (turnoJugador=='A'){
            if (posicionArribaN.equals(posicionArriba) && ((tablero[y2][x2].equals("SalidaB") || tablero[y2][x2].equals(""))  || EsComible(posicionNueva))) {
-                return true;
+               return true;
             } else if (posicionAbajoN.equals(posicionAbajo) && ((tablero[y2][x2].equals("SalidaB") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
             } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((tablero[y2][x2].equals("SalidaB") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
@@ -566,13 +566,13 @@ public class Controlador implements ActionListener{
         String posicionDerechaN=y2+""+x2;
 
         if (turnoJugador=='A'){
-           if (posicionArribaN.equals(posicionArriba) && ((tablero[y2][x2].equals("B_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+           if (posicionArribaN.equals(posicionArriba) && ((tablero[y2][x2].equals("") || TrampaComeReal(posicionNueva)))) {
                 return true;
-            } else if (posicionAbajoN.equals(posicionAbajo) && ((tablero[y2][x2].equals("B_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+            } else if (posicionAbajoN.equals(posicionAbajo) && ((tablero[y2][x2].equals("") || TrampaComeReal(posicionNueva)))) {
                 return true;
-            } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((tablero[y2][x2].equals("B_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+            } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((tablero[y2][x2].equals("") || TrampaComeReal(posicionNueva)))) {
                 return true;
-            } else if (posicionDerechaN.equals(posicionDerecha) && ((tablero[y2][x2].equals("B_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+            } else if (posicionDerechaN.equals(posicionDerecha) && ((tablero[y2][x2].equals("") || TrampaComeReal(posicionNueva)))) {
                 return true;
             } else if (posicionArribaN.equals(posicionArriba) && tablero[y2][x2].equals("B_fantasmaBueno") || tablero[y2][x2].equals("B_fantasmaMalo")){
                 boton(posAntigua).setIcon(null);
@@ -601,13 +601,13 @@ public class Controlador implements ActionListener{
         }
         
         if (turnoJugador=='B'){
-            if (posicionArribaN.equals(posicionArriba) && ((tablero[y2][x2].equals("A_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+            if (posicionArribaN.equals(posicionArriba) && ((tablero[y2][x2].equals("") || TrampaComeReal(posicionNueva)))) {
                 return true;
-            } else if (posicionAbajoN.equals(posicionAbajo) && ((tablero[y2][x2].equals("A_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+            } else if (posicionAbajoN.equals(posicionAbajo) && ((tablero[y2][x2].equals("") || TrampaComeReal(posicionNueva)))) {
                 return true;
-            } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((tablero[y2][x2].equals("A_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+            } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((tablero[y2][x2].equals("") || TrampaComeReal(posicionNueva)))) {
                 return true;
-            } else if (posicionDerechaN.equals(posicionDerecha) && ((tablero[y2][x2].equals("A_fantasmaFake") || tablero[y2][x2].equals("")) || TrampaComeReal(posicionNueva))) {
+            } else if (posicionDerechaN.equals(posicionDerecha) && ((tablero[y2][x2].equals("") || TrampaComeReal(posicionNueva)))) {
                 return true;
             }else if (posicionArribaN.equals(posicionArriba) && tablero[y2][x2].equals("A_fantasmaBueno") || tablero[y2][x2].equals("A_fantasmaMalo")){
                 boton(posAntigua).setIcon(null);
@@ -644,17 +644,14 @@ public class Controlador implements ActionListener{
         if (turnoJugador=='A'){
             if (tablero[y2][x2].charAt(0) == 'B') {
                 if (tablero[y2][x2].charAt(10) == 'B') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorBbuenos++;
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10) == 'M') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorBmalos++;
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10)== 'F') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
             }
@@ -664,22 +661,52 @@ public class Controlador implements ActionListener{
             if (tablero[y2][x2].charAt(0) == 'A') {
                 if (tablero[y2][x2].charAt(10) == 'B') {
                     contadorAbuenos++;
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10) == 'M') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorAmalos++;
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10)== 'F') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
             }
         }  
          return false;
 
+    }
+    
+    private void EsComibleMensaje(String posicionNueva) {
+        int x2 = Character.getNumericValue(posicionNueva.charAt(1));
+        int y2 = Character.getNumericValue(posicionNueva.charAt(0));
+
+        if (turnoJugador=='A'){
+            if (tablero[y2][x2].charAt(0) == 'B') {
+                if (tablero[y2][x2].charAt(10) == 'B') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (tablero[y2][x2].charAt(10) == 'M') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (tablero[y2][x2].charAt(10)== 'F') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } 
+        
+        if (turnoJugador=='B'){
+            if (tablero[y2][x2].charAt(0) == 'A') {
+                if (tablero[y2][x2].charAt(10) == 'B') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (tablero[y2][x2].charAt(10) == 'M') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (tablero[y2][x2].charAt(10)== 'F') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }  
     }
     
     private boolean TrampaComeReal(String posicionNueva) {

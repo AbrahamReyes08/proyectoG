@@ -70,6 +70,13 @@ public class Juego extends javax.swing.JFrame {
         LabelJug2 = new javax.swing.JLabel();
         LabelTurno = new javax.swing.JLabel();
         LabelJug1 = new javax.swing.JLabel();
+        Coor1 = new javax.swing.JLabel();
+        Coor4 = new javax.swing.JLabel();
+        Coor3 = new javax.swing.JLabel();
+        Coor5 = new javax.swing.JLabel();
+        Coor6 = new javax.swing.JLabel();
+        Coor7 = new javax.swing.JLabel();
+        Coor2 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -372,7 +379,7 @@ public class Juego extends javax.swing.JFrame {
         });
         jPanel1.add(BotonF6C6);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 660, 490));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 620, 500));
 
         Rendirte.setText("Rendirte");
         Rendirte.addActionListener(new java.awt.event.ActionListener() {
@@ -391,14 +398,35 @@ public class Juego extends javax.swing.JFrame {
         LabelTurno.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 14)); // NOI18N
         LabelTurno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelTurno.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "TURNO ACTUAL", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gill Sans MT Ext Condensed Bold", 1, 14))); // NOI18N
-        getContentPane().add(LabelTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 180, 40));
+        getContentPane().add(LabelTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 160, 40));
 
         LabelJug1.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         LabelJug1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelJug1.setToolTipText("");
         LabelJug1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         LabelJug1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Jugador 1", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gigi", 1, 14))); // NOI18N
-        getContentPane().add(LabelJug1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, 180));
+        getContentPane().add(LabelJug1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 110, 180));
+
+        Coor1.setText("                0                              1                              2                              3                             4                               5           ");
+        getContentPane().add(Coor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 620, -1));
+
+        Coor4.setText("1");
+        getContentPane().add(Coor4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 10, -1));
+
+        Coor3.setText("2");
+        getContentPane().add(Coor3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 10, -1));
+
+        Coor5.setText("3");
+        getContentPane().add(Coor5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
+
+        Coor6.setText("4");
+        getContentPane().add(Coor6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, -1, -1));
+
+        Coor7.setText("5");
+        getContentPane().add(Coor7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, -1, -1));
+
+        Coor2.setText("0");
+        getContentPane().add(Coor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo 3.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 620));
@@ -463,6 +491,13 @@ public class Juego extends javax.swing.JFrame {
     public static javax.swing.JButton BotonF6C4;
     public static javax.swing.JButton BotonF6C5;
     public static javax.swing.JButton BotonF6C6;
+    public static javax.swing.JLabel Coor1;
+    public static javax.swing.JLabel Coor2;
+    public static javax.swing.JLabel Coor3;
+    public static javax.swing.JLabel Coor4;
+    public static javax.swing.JLabel Coor5;
+    public static javax.swing.JLabel Coor6;
+    public static javax.swing.JLabel Coor7;
     public static javax.swing.JLabel LabelJug1;
     public static javax.swing.JLabel LabelJug2;
     public static javax.swing.JLabel LabelTurno;

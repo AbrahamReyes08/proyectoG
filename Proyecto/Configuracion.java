@@ -104,10 +104,20 @@ public class Configuracion extends javax.swing.JFrame {
 
         Aleatorio.setFont(new java.awt.Font("Gloucester MT Extra Condensed", 0, 18)); // NOI18N
         Aleatorio.setText("Aleatorio");
+        Aleatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AleatorioActionPerformed(evt);
+            }
+        });
         getContentPane().add(Aleatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 90, 40));
 
         Manual.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         Manual.setText("Manual");
+        Manual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManualActionPerformed(evt);
+            }
+        });
         getContentPane().add(Manual, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 90, 40));
 
         Salir.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
@@ -126,7 +136,7 @@ public class Configuracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ExpertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExpertActionPerformed
-        modoJuego.setModoJuego("Expert");
+        modoJuego.setModoJuegoDif("Expert");
 
     }//GEN-LAST:event_ExpertActionPerformed
 
@@ -136,26 +146,34 @@ public class Configuracion extends javax.swing.JFrame {
     }//GEN-LAST:event_SalirActionPerformed
 
     private void NormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NormalActionPerformed
-        modoJuego.setModoJuego("Normal");
+        modoJuego.setModoJuegoDif("Normal");
         
     }//GEN-LAST:event_NormalActionPerformed
 
     private void GeniusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeniusActionPerformed
-        modoJuego.setModoJuego("Genius");
+        modoJuego.setModoJuegoDif("Genius");
 
     }//GEN-LAST:event_GeniusActionPerformed
 
     private void NormalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NormalMouseClicked
-        modoJuego.setModoJuego("Normal");
+        modoJuego.setModoJuegoDif("Normal");
     }//GEN-LAST:event_NormalMouseClicked
 
     private void ExpertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpertMouseClicked
-        modoJuego.setModoJuego("Expert");
+        modoJuego.setModoJuegoDif("Expert");
     }//GEN-LAST:event_ExpertMouseClicked
 
     private void GeniusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GeniusMouseClicked
-        modoJuego.setModoJuego("Genius");
+        modoJuego.setModoJuegoDif("Genius");
     }//GEN-LAST:event_GeniusMouseClicked
+
+    private void AleatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AleatorioActionPerformed
+      ModoJuego.setModoDeJuego("Aleatorio");
+    }//GEN-LAST:event_AleatorioActionPerformed
+
+    private void ManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualActionPerformed
+        ModoJuego.setModoDeJuego("Manual");
+    }//GEN-LAST:event_ManualActionPerformed
 
     /**
      * @param args the command line arguments

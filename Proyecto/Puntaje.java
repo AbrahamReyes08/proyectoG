@@ -5,73 +5,60 @@
 package Proyecto;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 
 /**
  *
  * @author dell
  */
 public class Puntaje extends Usuario {
-        private int puntaje;
-        private static HashMap<String, Integer> puntajes = new HashMap<>();
+        private int puntos;
 
-        public Puntaje(String username, String contraseña, int puntaje) {
+        public Puntaje(String username, String contraseña) {
             super(username, contraseña);
-            this.puntaje = puntaje;
-            puntajes.put(this.getUsername(), puntaje); 
+            this.puntos = 0;
         }
 
-        public static int getPuntos() {
-            return puntajes.getOrDefault(jugadorLog, 0); 
+        public int getPuntos() {
+            return puntos;
         }
 
-        private static void incrementarPuntos(int puntos) {
-            int puntosActuales = getPuntos();
-            puntajes.put(jugadorLog, puntosActuales + puntos);
+        public void agregarPuntos(int cantidad) {
+            puntos += cantidad;
         }
-        public static void incrementarPuntos(String jugador1, int puntajeJugador1, String jugador2, int puntajeJugador2) {
+
+        public static void agregarPuntosAUsuario(String username, int cantidad) {
             for (Usuario usuario : usuarios) {
-                if (puntajeJugador1 > 0 && usuario.getUsername().equals(jugador1)) {
-                    incrementarPuntos(puntajeJugador1);
-                } else if (puntajeJugador2 > 0 && usuario.getUsername().equals(jugador2)) {
-                    incrementarPuntos(puntajeJugador2);
+                if (usuario.getUsername().equals(username)) {
+                    ((Puntaje) usuario).agregarPuntos(cantidad);
+                    break;
                 }
             }
         }
 
-        public static String obtenerPuntosJugadorLog() {
+        public static int getPuntosJugadorLog() {
             for (Usuario usuario : usuarios) {
                 if (usuario.getUsername().equals(jugadorLog)) {
-                    return "Puntos de " + usuario.getUsername() + ": " + Puntaje.getPuntos();
+                    return ((Puntaje) usuario).getPuntos();
                 }
             }
-            return "Jugador no encontrado";
+            return 0;
         }
 
-        public static String obtenerPuntajes() {
-            ArrayList<Usuario> jugadores = Usuario.getUsuarios();
-            Collections.sort(jugadores, new Comparator<Usuario>() {
-                @Override
-                public int compare(Usuario u1, Usuario u2) {
-                    return Integer.compare(Puntaje.getPuntos(), Puntaje.getPuntos());
+        public static String getPuntosOrdenados() {
+            ArrayList<Puntaje> puntajesOrdenados = new ArrayList<>();
+            for (Usuario usuario : usuarios) {
+                if (usuario instanceof Puntaje) {
+                    puntajesOrdenados.add((Puntaje) usuario);
                 }
-            });
+            }
+            puntajesOrdenados.sort((puntaje1, puntaje2) -> Integer.compare(puntaje2.getPuntos(), puntaje1.getPuntos()));
 
-            StringBuilder sb = new StringBuilder();
-
-            int posicion = 1;
-            for (Usuario jugador : jugadores) {
-                sb.append(posicion).append(". ")
-                        .append(jugador.getUsername())
-                        .append(" - ")
-                        .append(Puntaje.getPuntos())
-                        .append(" puntos\n");
-                posicion++;
+            StringBuilder resultado = new StringBuilder("Puntos de los usuarios (ordenados de mayor a menor):\n");
+            for (Puntaje puntaje : puntajesOrdenados) {
+                resultado.append(puntaje.getUsername()).append(": ").append(puntaje.getPuntos()).append(" puntos\n");
             }
 
-            return sb.toString();
+            return resultado.toString();
         }
-    }    
+    }
 

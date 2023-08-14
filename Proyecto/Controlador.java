@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author dell
  */
-public class Controlador implements ActionListener{
+public class Controlador implements ActionListener {
     private String[][] tablero=new String [6][6];
     ArrayList<String> AFantasmas = new ArrayList<>();
     ArrayList<String> BFantasmas = new ArrayList<>();
@@ -29,13 +29,11 @@ public class Controlador implements ActionListener{
     private char turnoJugador='A';
     private String turno=Usuario.jugadorLog;
     private String ganador;
-    public static String jugador1=Usuario.jugadorLog;
-    public static String jugador2;
+    public String jugador1=Usuario.jugadorLog;
+    public String jugador2;
     private String posicionAntigua = null;
     private String posicionNueva = null;
     private String posicionActual;
-    private String posicionSalida=null;
-    private String posicionElegida=null;
     
     private final int puntosGanador=3;
     private final int puntosPerdedor=0;
@@ -788,34 +786,40 @@ public class Controlador implements ActionListener{
         if (ModoJuego.getModoJuegoDif().equals("Normal")) {
                 if ((4-contadorAbuenos)==0) {
                     JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
                     juego.dispose();
                 }
                 if ((4-contadorBbuenos)==0) {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
+                    Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Expert")) {
                 if ((2-contadorAbuenos)==0) {
                     JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
                     juego.dispose();
                 }
                 if ((2-contadorBbuenos)==0) {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
+                    Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Genius")) {
                     if ((1-contadorAbuenos)==0) {
                         JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
+                        Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
+                        Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
                         juego.dispose();
                     }
                     if ((1-contadorBbuenos)==0) {
                         JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                        Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
+                        Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
                         juego.dispose();
                     }
         }
@@ -825,34 +829,40 @@ public class Controlador implements ActionListener{
         if (ModoJuego.getModoJuegoDif().equals("Normal")) {
                 if ((4-contadorAmalos)==0) {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
+                    Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
                     juego.dispose();
                 }
                 if ((4-contadorBmalos)==0) {
                     JOptionPane.showMessageDialog(null,jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                   Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Expert")) {
                 if ((2-contadorAmalos)==0) {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
+                    Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
                     juego.dispose();
                 }
                 if ((2-contadorBmalos)==0) {
                     JOptionPane.showMessageDialog(null,jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    Puntaje.incrementarPuntos(jugador1, 0, jugador2,3);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Genius")) {
                 if ((1-contadorAmalos)==0) {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
+                    Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
                     juego.dispose();
                 }
                 if ((1-contadorBmalos)==0) {
                     JOptionPane.showMessageDialog(null,jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
                     juego.dispose();
                 }
         }
@@ -871,13 +881,15 @@ public class Controlador implements ActionListener{
         
            if (tablero[y][x].equals("A_fantasmaBueno") && tablero[y2][x2].equals("SalidaB")) {
                 JOptionPane.showMessageDialog(null, jugador1+" triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
+                Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
                 juego.dispose();
            } 
            
             if (tablero[y][x].equals("B_fantasmaBueno") && tablero[y2][x2].equals("SalidaA") ) {
                 JOptionPane.showMessageDialog(null, jugador2+" triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
+                Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
+                    Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
                 juego.dispose();
             } 
         }

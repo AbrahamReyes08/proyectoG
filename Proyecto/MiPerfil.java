@@ -16,10 +16,10 @@ public class MiPerfil extends javax.swing.JFrame {
     public MiPerfil() {
         initComponents();
         this.setLocationRelativeTo(null);
-        String puntos = Puntaje.obtenerPuntosJugadorLog();
-        String nombreUsuario= Usuario.getJugadorLog();
+        String puntos= "Puntos de "+Usuario.getJugadorLog()+": "+Usuario.getPuntosJugadorLog()+"\n";
+        String nombreUsuario = "Nombre de usuario: " + Usuario.getJugadorLog() + "\n";
         info.setText(("<html>"+nombreUsuario.replaceAll("\n", "<br>")
-            +puntos.replaceAll("\n", "<br>")+ "</html>"));
+            +puntos.replaceAll("\n", "<br>")+"</html>"));
     }
 
     /**

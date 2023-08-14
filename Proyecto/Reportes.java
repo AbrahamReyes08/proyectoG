@@ -16,8 +16,8 @@ public class Reportes extends javax.swing.JFrame {
     public Reportes() {
         initComponents();
         this.setLocationRelativeTo(null);
-        String puntuaje =Puntaje.obtenerPuntajes();
-        ranking.setText(("<html>"+puntuaje.replaceAll("\n", "<br>")+"</html>"));
+        String puntaje =Usuario.getPuntosOrdenados();
+        ranking.setText(("<html>"+puntaje.replaceAll("\n", "<br>")+"</html>"));
     }
 
     /**

@@ -436,10 +436,8 @@ public class Juego extends javax.swing.JFrame {
 
     private void RendirteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RendirteActionPerformed
         int respuesta = JOptionPane.showConfirmDialog(this, "¿Estás seguro que quieres rendirte?", "Confirmar rendición", JOptionPane.YES_NO_OPTION);
-        System.out.println(Controlador.jugador1);
-        System.out.println(Controlador.jugador2);
+
         if (respuesta == JOptionPane.YES_OPTION) {
-            Puntaje.incrementarPuntos(Controlador.jugador1, 0, Controlador.jugador2, 3);
             this.dispose();
         }
     }//GEN-LAST:event_RendirteActionPerformed

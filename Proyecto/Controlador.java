@@ -29,14 +29,17 @@ public class Controlador implements ActionListener{
     private char turnoJugador='A';
     private String turno=Usuario.jugadorLog;
     private String ganador;
-    private String jugador1=Usuario.jugadorLog;
-    private String jugador2;
+    public static String jugador1=Usuario.jugadorLog;
+    public static String jugador2;
     private String posicionAntigua = null;
     private String posicionNueva = null;
     private String posicionActual;
     private String posicionSalida=null;
     private String posicionElegida=null;
-
+    
+    private final int puntosGanador=3;
+    private final int puntosPerdedor=0;
+    
     private int contadorAmalos;
     private int contadorAbuenos;
     private int contadorBmalos;
@@ -48,7 +51,6 @@ public class Controlador implements ActionListener{
     Movimientos movimientos;
     Random random = new Random();
     Juego juego=new Juego();
-
     
     public Controlador() {
         iniciarTablero();
@@ -239,7 +241,11 @@ public class Controlador implements ActionListener{
                     }
                 } else {
                 if (casillaDisponible(posicionAntigua,posicionNueva) ){
+                    String mes =dimeLaCasilla(posicionNueva);
                     cambiarFichas(posicionAntigua, posicionNueva);
+                    if(!mes.equals("")) {
+                    EsComibleMes(mes);
+                    }
                     posicionNueva = null;
                     posicionAntigua = null;
                     cambiarTurno();
@@ -263,7 +269,11 @@ public class Controlador implements ActionListener{
                     }
                 } else {
                 if (casillaDisponible(posicionAntigua,posicionNueva) ){
+                    String mes =dimeLaCasilla(posicionNueva);
                     cambiarFichas(posicionAntigua, posicionNueva);
+                    if(!mes.equals("")) {
+                    EsComibleMes(mes);
+                    }
                     posicionNueva = null;
                     posicionAntigua = null;
                     cambiarTurno();
@@ -591,21 +601,25 @@ public class Controlador implements ActionListener{
                 return true;
             } else if (posicionArribaN.equals(posicionArriba) && tablero[y2][x2].equals("B_fantasmaBueno") || tablero[y2][x2].equals("B_fantasmaMalo")){
                 boton(posAntigua).setIcon(null);
+                tablero[y][x]="";
                JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
                 cambiarTurno();
                return false;
             } else if (posicionAbajoN.equals(posicionAbajo) && tablero[y2][x2].equals("B_fantasmaBueno") || tablero[y2][x2].equals("B_fantasmaMalo")){
                 boton(posAntigua).setIcon(null);
+                tablero[y][x]="";
                JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
                 cambiarTurno();
                return false;
             }else if (posicionIzquierdaN.equals(posicionIzquierda) && tablero[y2][x2].equals("B_fantasmaBueno") || tablero[y2][x2].equals("B_fantasmaMalo")){
                 boton(posAntigua).setIcon(null);
+                tablero[y][x]="";
                JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
                 cambiarTurno();
                return false;
             }else if (posicionDerechaN.equals(posicionDerecha) && tablero[y2][x2].equals("B_fantasmaBueno") || tablero[y2][x2].equals("B_fantasmaMalo")){
                 boton(posAntigua).setIcon(null);
+                tablero[y][x]="";
                JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
                 cambiarTurno();
                return false;
@@ -626,21 +640,25 @@ public class Controlador implements ActionListener{
                 return true;
             }else if (posicionArribaN.equals(posicionArriba) && tablero[y2][x2].equals("A_fantasmaBueno") || tablero[y2][x2].equals("A_fantasmaMalo")){
                 boton(posAntigua).setIcon(null);
+                tablero[y][x]="";
                JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
                 cambiarTurno();
                return false;
             } else if (posicionAbajoN.equals(posicionAbajo) && tablero[y2][x2].equals("A_fantasmaBueno") || tablero[y2][x2].equals("A_fantasmaMalo")){
                 boton(posAntigua).setIcon(null);
+                tablero[y][x]="";
                JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
                 cambiarTurno();
                return false;
             }else if (posicionIzquierdaN.equals(posicionIzquierda) && tablero[y2][x2].equals("A_fantasmaBueno") || tablero[y2][x2].equals("A_fantasmaMalo")){
                 boton(posAntigua).setIcon(null);
+                tablero[y][x]="";
                JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
                 cambiarTurno();
                return false;
             }else if (posicionDerechaN.equals(posicionDerecha) && tablero[y2][x2].equals("A_fantasmaBueno") || tablero[y2][x2].equals("A_fantasmaMalo")){
                 boton(posAntigua).setIcon(null);
+                tablero[y][x]="";
                JOptionPane.showMessageDialog(null, "Perdiste tu fantasma\nTratando de comerte a un fantasma real.", "Error", JOptionPane.ERROR_MESSAGE);
                 cambiarTurno();
                return false;
@@ -659,17 +677,14 @@ public class Controlador implements ActionListener{
         if (turnoJugador=='A'){
             if (tablero[y2][x2].charAt(0) == 'B') {
                 if (tablero[y2][x2].charAt(10) == 'B') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorBbuenos++;
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10) == 'M') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorBmalos++;
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10)== 'F') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
             }
@@ -678,23 +693,50 @@ public class Controlador implements ActionListener{
         if (turnoJugador=='B'){
             if (tablero[y2][x2].charAt(0) == 'A') {
                 if (tablero[y2][x2].charAt(10) == 'B') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorAbuenos++;
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10) == 'M') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     contadorAmalos++;
                     return true;
                 }
                 if (tablero[y2][x2].charAt(10)== 'F') {
-                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
             }
         }  
          return false;
 
+    }
+    
+    private void EsComibleMes(String posicionNueva) {
+        if (turnoJugador=='A'){
+            if (posicionNueva.charAt(0) == 'B') {
+                if (posicionNueva.charAt(10) == 'B') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (posicionNueva.charAt(10) == 'M') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (posicionNueva.charAt(10)== 'F') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador2, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } 
+        
+        if (turnoJugador=='B'){
+            if (posicionNueva.charAt(0) == 'A') {
+                if (posicionNueva.charAt(10) == 'B') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma bueno de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (posicionNueva.charAt(10) == 'M') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma malo de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if (posicionNueva.charAt(10)== 'F') {
+                    JOptionPane.showMessageDialog(null, "Te has comido un fantasma trampa de "+jugador1, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }  
     }
 
     private boolean TrampaComeReal(String posicionNueva) {
@@ -746,29 +788,35 @@ public class Controlador implements ActionListener{
         if (ModoJuego.getModoJuegoDif().equals("Normal")) {
                 if ((4-contadorAbuenos)==0) {
                     JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
                     juego.dispose();
                 }
                 if ((4-contadorBbuenos)==0) {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Expert")) {
                 if ((2-contadorAbuenos)==0) {
                     JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
                     juego.dispose();
                 }
                 if ((2-contadorBbuenos)==0) {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Genius")) {
                     if ((1-contadorAbuenos)==0) {
                         JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    juego.dispose();
+                    Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
+                        juego.dispose();
                     }
                     if ((1-contadorBbuenos)==0) {
                         JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
-                    juego.dispose();
+                        Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
+                        juego.dispose();
                     }
         }
     }
@@ -776,29 +824,35 @@ public class Controlador implements ActionListener{
     private void comprobarGane2() {
         if (ModoJuego.getModoJuegoDif().equals("Normal")) {
                 if ((4-contadorAmalos)==0) {
-                    JOptionPane.showMessageDialog(null, jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
                     juego.dispose();
                 }
                 if ((4-contadorBmalos)==0) {
-                    JOptionPane.showMessageDialog(null,jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                   Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Expert")) {
                 if ((2-contadorAmalos)==0) {
-                    JOptionPane.showMessageDialog(null, jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
                     juego.dispose();
                 }
                 if ((2-contadorBmalos)==0) {
-                    JOptionPane.showMessageDialog(null,jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    Puntaje.incrementarPuntos(jugador1, 0, jugador2,3);
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Genius")) {
                 if ((1-contadorAmalos)==0) {
-                    JOptionPane.showMessageDialog(null, jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
                     juego.dispose();
                 }
                 if ((1-contadorBmalos)==0) {
-                    JOptionPane.showMessageDialog(null,jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                    Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
                     juego.dispose();
                 }
         }
@@ -817,11 +871,13 @@ public class Controlador implements ActionListener{
         
            if (tablero[y][x].equals("A_fantasmaBueno") && tablero[y2][x2].equals("SalidaB")) {
                 JOptionPane.showMessageDialog(null, jugador1+" triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                Puntaje.incrementarPuntos(jugador1, 3, jugador2, 0);
                 juego.dispose();
            } 
            
             if (tablero[y][x].equals("B_fantasmaBueno") && tablero[y2][x2].equals("SalidaA") ) {
-                JOptionPane.showMessageDialog(null, jugador2+"Patito triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, jugador2+" triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
+                Puntaje.incrementarPuntos(jugador1, 0, jugador2, 3);
                 juego.dispose();
             } 
         }
@@ -930,7 +986,10 @@ public class Controlador implements ActionListener{
                         null,
                         numPosA,
                         numPosA[0]
-                    );
+                    ); 
+                    if (opcionSeleccionada==null) {
+                        juego.dispose();
+                    }
                     
                     if ( AFantasmas.size() > 0) {
                         int x = Character.getNumericValue(opcionSeleccionada.charAt(1));
@@ -958,6 +1017,9 @@ public class Controlador implements ActionListener{
                         numPos,
                         numPos[0]
                     );
+                    if (opcionSeleccionadaB==null) {
+                        juego.dispose();
+                    }
                     
                     if ( BFantasmas.size() > 0) {
                         int x = Character.getNumericValue(opcionSeleccionadaB.charAt(1));

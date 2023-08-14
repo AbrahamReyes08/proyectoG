@@ -79,7 +79,7 @@ public class Juego extends javax.swing.JFrame {
         Coor2 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -436,8 +436,10 @@ public class Juego extends javax.swing.JFrame {
 
     private void RendirteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RendirteActionPerformed
         int respuesta = JOptionPane.showConfirmDialog(this, "¿Estás seguro que quieres rendirte?", "Confirmar rendición", JOptionPane.YES_NO_OPTION);
-    
+        System.out.println(Controlador.jugador1);
+        System.out.println(Controlador.jugador2);
         if (respuesta == JOptionPane.YES_OPTION) {
+            Puntaje.incrementarPuntos(Controlador.jugador1, 0, Controlador.jugador2, 3);
             this.dispose();
         }
     }//GEN-LAST:event_RendirteActionPerformed

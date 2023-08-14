@@ -16,6 +16,8 @@ public class Reportes extends javax.swing.JFrame {
     public Reportes() {
         initComponents();
         this.setLocationRelativeTo(null);
+        String puntuaje =Puntaje.obtenerPuntajes();
+        ranking.setText(("<html>"+puntuaje.replaceAll("\n", "<br>")+"</html>"));
     }
 
     /**
@@ -28,7 +30,7 @@ public class Reportes extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        UltimosJuegos = new javax.swing.JLabel();
+        ranking = new javax.swing.JLabel();
         Ranking = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
@@ -42,9 +44,10 @@ public class Reportes extends javax.swing.JFrame {
         jLabel2.setText("Reportes");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 460, 90));
 
-        UltimosJuegos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        UltimosJuegos.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(UltimosJuegos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 360, 420));
+        ranking.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ranking.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        ranking.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Ranking", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18))); // NOI18N
+        getContentPane().add(ranking, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 360, 420));
 
         Ranking.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Ranking.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -73,43 +76,13 @@ public class Reportes extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reportes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Reportes().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Ranking;
     private javax.swing.JButton Salir;
-    private javax.swing.JLabel UltimosJuegos;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel ranking;
     // End of variables declaration//GEN-END:variables
 }

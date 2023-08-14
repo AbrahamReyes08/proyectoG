@@ -15,7 +15,7 @@ public class Usuario {
     private String contraseña;
     public static String jugadorLog;
     
-    private static ArrayList<Usuario> usuarios = new ArrayList<>();
+    public static ArrayList<Usuario> usuarios = new ArrayList<>();
     
     public Usuario(String username, String contraseña){
         this.username=username;
@@ -44,7 +44,7 @@ public class Usuario {
     public static void guardarDatos(String username, String contraseña) {
         Usuario usuario = new Usuario(username, contraseña);
         usuarios.add(usuario);
-    }
+    }    
     
     public static boolean validarUsuarioUnico(String usuario) {
         return validarUsuarioUnico(usuarios.toArray(new Usuario[0]), usuario, 0);

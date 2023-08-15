@@ -48,7 +48,7 @@
         <Property name="verticalAlignment" type="int" value="1"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder justification="2" title="Ranking">
+            <TitledBorder justification="2" position="3" title="Ranking">
               <Font PropertyName="font" name="Gill Sans MT Ext Condensed Bold" size="18" style="0"/>
             </TitledBorder>
           </Border>
@@ -60,14 +60,21 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="Ranking">
+    <Component class="javax.swing.JLabel" name="logs">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="verticalAlignment" type="int" value="1"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder justification="2" position="3" title="Ultimos Logs">
+              <Font PropertyName="font" name="Gill Sans MT Ext Condensed Bold" size="18" style="0"/>
+            </TitledBorder>
+          </Border>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="470" y="160" width="360" height="420"/>
+          <AbsoluteConstraints x="480" y="160" width="350" height="420"/>
         </Constraint>
       </Constraints>
     </Component>

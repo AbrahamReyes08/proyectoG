@@ -16,10 +16,14 @@ public class MiPerfil extends javax.swing.JFrame {
     public MiPerfil() {
         initComponents();
         this.setLocationRelativeTo(null);
+        String batallasJugador = Batalla.obtenerPartidasLog(); 
         String puntos= "Puntos de "+Usuario.getJugadorLog()+": "+Usuario.getPuntosJugadorLog()+"\n";
         String nombreUsuario = "Nombre de usuario: " + Usuario.getJugadorLog() + "\n";
+        String cant= "Cantidad de partidas jugadas: "+Batalla.cantidadPartidasJugLog();
         info.setText(("<html>"+nombreUsuario.replaceAll("\n", "<br>")
-            +puntos.replaceAll("\n", "<br>")+"</html>"));
+            +puntos.replaceAll("\n", "<br>")
+            +batallasJugador.replaceAll("\n", "<br>") +
+             cant.replaceAll("\n", "<br>") +"</html>"));
     }
 
     /**
@@ -79,7 +83,7 @@ public class MiPerfil extends javax.swing.JFrame {
         info.setText("<html> jLabel1<htm>");
         info.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         info.setAutoscrolls(true);
-        info.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "INFORMACIÓN DEL USUARIO", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18))); // NOI18N
+        info.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "INFORMACIÓN DEL USUARIO", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18))); // NOI18N
         info.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(info, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 470, 380));
 

@@ -95,7 +95,9 @@ public class EliminarCuenta extends javax.swing.JFrame {
                     UsuariosEliminados.guardarUsuariosEliminados(username);
                     MenuInicial menuInicial=new MenuInicial();
                     menuInicial.setVisible(true);
+                    
                     this.dispose();
+                    
                 } else {
                 if (opcion == JOptionPane.NO_OPTION) {
                     JOptionPane.showMessageDialog(null, "Su cuenta no fue eliminada.");

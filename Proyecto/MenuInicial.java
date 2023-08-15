@@ -76,7 +76,7 @@ public class MenuInicial extends javax.swing.JFrame {
         getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 140, 60));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo 2.png"))); // NOI18N
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 620));
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 930, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

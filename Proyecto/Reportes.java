@@ -18,6 +18,15 @@ public class Reportes extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         String puntaje =Usuario.getPuntosOrdenados();
         ranking.setText(("<html>"+puntaje.replaceAll("\n", "<br>")+"</html>"));
+        String log =Batalla.obtenerPartidas() ;
+        String cant ="Cantidad de partidas jugadas: "+Batalla.getNumeroPartidas()+"\n";
+        String cantidadUsuariosActivos="Cantidad de jugadores Activos: "+Usuario.getNumeroUsuariosRegistrados()+"\n";
+        String cantidadUH= "Cantidad de jugadores Historicos: "+Usuario.getCH()+"\n";
+         logs.setText(("<html>"+log.replaceAll("\n", "<br>")+
+                 cant.replaceAll("\n", "<br>")+
+                 cantidadUsuariosActivos.replaceAll("\n", "<br>")+
+                 cantidadUH.replaceAll("\n", "<br>")+"</html>"));
+
     }
 
     /**
@@ -31,7 +40,7 @@ public class Reportes extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         ranking = new javax.swing.JLabel();
-        Ranking = new javax.swing.JLabel();
+        logs = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
@@ -46,12 +55,13 @@ public class Reportes extends javax.swing.JFrame {
 
         ranking.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ranking.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        ranking.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Ranking", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18))); // NOI18N
+        ranking.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Ranking", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18))); // NOI18N
         getContentPane().add(ranking, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 360, 420));
 
-        Ranking.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Ranking.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(Ranking, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 360, 420));
+        logs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logs.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        logs.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Ultimos Logs", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18))); // NOI18N
+        getContentPane().add(logs, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 350, 420));
 
         Salir.setFont(new java.awt.Font("Gill Sans MT Ext Condensed Bold", 0, 18)); // NOI18N
         Salir.setText("Regresar");
@@ -79,10 +89,10 @@ public class Reportes extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Ranking;
     private javax.swing.JButton Salir;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel logs;
     private javax.swing.JLabel ranking;
     // End of variables declaration//GEN-END:variables
 }

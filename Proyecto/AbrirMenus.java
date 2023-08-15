@@ -11,6 +11,7 @@ package Proyecto;
 public class AbrirMenus {
     static Juego juego=new Juego();
     static MenuInicial MenuInicial = new MenuInicial();
+    
     public static void abrirJuego() {
         juego.setVisible(true);
     }
@@ -31,6 +32,7 @@ public class AbrirMenus {
         RegistrarUsuario Registro = new RegistrarUsuario();
         Registro.setVisible(true);
     }
+    
     public static void llamarLogin() {
         IniciarSesion LogIn = new IniciarSesion();
         LogIn.setVisible(true);

@@ -5,9 +5,6 @@
 package Proyecto;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 
 /**
  *
@@ -19,18 +16,29 @@ public class Usuario {
         public static String jugadorLog;
 
         private int puntos;
-
+        
+        public static ArrayList<Integer> usuariosH = new ArrayList<>();
         public static ArrayList<Usuario> usuarios = new ArrayList<>();
-
+        public static ArrayList<Partida> partidasTotales = new ArrayList<>();
+        
         public Usuario(String username, String contraseña){
-            this.username=username;
-            this.contraseña=contraseña;
-             this.puntos = 0; 
+                this.username=username;
+                this.contraseña=contraseña;
+                 this.puntos = 0; 
+            }
+        
+        public static void agregarUH(int n) {
+            usuariosH.add(n);
         }
-
+        
+        public static int getCH() {
+            return usuariosH.size();
+        }
+        
         public static String getJugadorLog() {
             return jugadorLog;
         }
+        
         public String getUsername() {
             return username;
         }
@@ -143,14 +151,17 @@ public class Usuario {
         public static String getPuntosOrdenados() {
             ArrayList<Usuario> usuariosOrdenados = new ArrayList<>(usuarios);
             usuariosOrdenados.sort((usuario1, usuario2) -> Integer.compare(usuario2.getPuntos(), usuario1.getPuntos()));
-
-            StringBuilder resultado = new StringBuilder("Puntos de los usuarios (ordenados de mayor a menor):\n");
+            int contador=1;
+            StringBuilder resultado = new StringBuilder("Tabla de Puntuación (mayor a menor):\n");
             for (Usuario usuario : usuariosOrdenados) {
-                resultado.append(usuario.getUsername()).append(": ").append(usuario.getPuntos()).append(" puntos\n");
+                resultado.append(contador+".        "+usuario.getUsername()).append(": ").append(usuario.getPuntos()).append(" puntos\n");
+                contador+=1;
             }
-
+            
             return resultado.toString();
         }
+        
+        
+     }
     
-    }
     

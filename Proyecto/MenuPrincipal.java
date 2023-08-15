@@ -131,7 +131,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ReportesActionPerformed
 
     private void MiPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MiPerfilActionPerformed
-        MiPerfil miPerfil = new MiPerfil();
+         MiPerfil miPerfil = new MiPerfil();
         miPerfil.setVisible(true);
     }//GEN-LAST:event_MiPerfilActionPerformed
 

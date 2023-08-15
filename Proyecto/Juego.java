@@ -435,11 +435,21 @@ public class Juego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RendirteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RendirteActionPerformed
-        int respuesta = JOptionPane.showConfirmDialog(this, "¿Estás seguro que quieres rendirte?", "Confirmar rendición", JOptionPane.YES_NO_OPTION);
-
-        if (respuesta == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
+            int respuesta = JOptionPane.showConfirmDialog(null, "¿Estás seguro que quieres rendirte?", "Rendirte", JOptionPane.YES_NO_OPTION);
+            if (respuesta == JOptionPane.YES_OPTION)  {
+                if(Controlador.g.equals(Usuario.getJugadorLog())) {
+                    Usuario.agregarPuntosAUsuario(Controlador.g, 0);
+                    Usuario.agregarPuntosAUsuario(Controlador.p, 3);
+                    Batalla batalla =new Batalla(Controlador.p+" triunfo, ya que "+Controlador.g+" se rindio.");
+                    this.dispose();
+                } 
+                if(Controlador.g.equals(Controlador.p)) {
+                    Usuario.agregarPuntosAUsuario(Controlador.p, 0);
+                    Usuario.agregarPuntosAUsuario(Usuario.getJugadorLog(), 3);
+                    Batalla batalla =new Batalla(Usuario.getJugadorLog()+" triunfo, ya que "+Controlador.p+" se rindio.");
+                    this.dispose();
+                }
+            }
     }//GEN-LAST:event_RendirteActionPerformed
 
     private void BotonF1C1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonF1C1ActionPerformed
@@ -501,7 +511,7 @@ public class Juego extends javax.swing.JFrame {
     public static javax.swing.JLabel LabelJug1;
     public static javax.swing.JLabel LabelJug2;
     public static javax.swing.JLabel LabelTurno;
-    private javax.swing.JButton Rendirte;
+    public static javax.swing.JButton Rendirte;
     private javax.swing.JLabel fondo;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

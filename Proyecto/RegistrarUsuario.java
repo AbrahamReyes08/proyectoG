@@ -96,7 +96,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             }
         } else { //guardar los datos en el arraylist
             Usuario.guardarDatos(username, contraseña);
-            
+            Usuario.agregarUH(1);
             JOptionPane.showMessageDialog(null, "El usuario ha sido registrado exitosamente",
                     "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();

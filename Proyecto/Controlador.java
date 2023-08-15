@@ -34,6 +34,8 @@ public class Controlador implements ActionListener {
     private String posicionAntigua = null;
     private String posicionNueva = null;
     private String posicionActual;
+    public static String g=Usuario.getJugadorLog();
+    public static String p;
     
     private final int puntosGanador=3;
     private final int puntosPerdedor=0;
@@ -61,36 +63,36 @@ public class Controlador implements ActionListener {
     }
     
     private void iniciarTablero() {
+        
         int numeroJugadores=Usuario.getNumeroUsuariosRegistrados();
         boolean jugadorValido=false;
-
-        if (numeroJugadores > 1) {
-            while (jugadorValido==false) {
-                jugador2 = JOptionPane.showInputDialog(null, "Ingrese el nombre de usuario para el Jugador 2:", "Juego", JOptionPane.INFORMATION_MESSAGE);
-                jugadorValido = false; 
-
-                for (Usuario usuario : Usuario.getUsuarios()) {
-                    if ((usuario.getUsername().equals(jugador2) || jugador2.equals("invitado")) && !jugador2.equals(jugador1)) {
-                        jugadorValido = true;
-                        break;
+        
+         if (numeroJugadores > 1) {
+                String[] opcionesUsuarios = obtenerNombresUsuarios(); 
+                jugador2 = (String) JOptionPane.showInputDialog(
+                        null,
+                        "Seleccione el Jugador 2:",
+                        "Seleccionar Jugador",
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        opcionesUsuarios,
+                        opcionesUsuarios[0]
+                );
+                
+                if (jugador2==null) {
+                        juego.dispose();
                     }
-                } 
-                if (jugadorValido==false) {
-                     JOptionPane.showMessageDialog(null, "Usuario no valido.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            };
         } else {
             jugador2 = "Invitado";
         }
+         p=jugador2;
         
         for (int i=0;i<6;i++) {
             for (int j=0; j<6;j++) {
                 tablero [i][j]="";
             }
         }
-        
     }
-    
    
     private void añadirActionEvents() {
         Juego.BotonF1C1.addActionListener(this);
@@ -278,18 +280,19 @@ public class Controlador implements ActionListener {
                 }
             }
             }
-        }
-   
+        }    
 }
     
     public void cambiarTurno() {
         if (turnoJugador=='A') {
             ganador=jugador1;
+            g=jugador2;
             turno=jugador2;
             turnoJugador='B';
         } else {
             ganador=jugador2;
             turno=jugador1;
+            g=jugador1;
             turnoJugador='A';
         }
         Juego.LabelTurno.setText(turno);
@@ -539,13 +542,13 @@ public class Controlador implements ActionListener {
         String posicionIzquierdaN=y2+""+x2;
         String posicionDerechaN=y2+""+x2;
         if (turnoJugador=='A'){
-           if (posicionArribaN.equals(posicionArriba) && ((tablero[y2][x2].equals("SalidaB") || tablero[y2][x2].equals(""))  || EsComible(posicionNueva))) {
+           if (posicionArribaN.equals(posicionArriba) && ((PuedeSalir(posicionAntigua, posicionNueva) || tablero[y2][x2].equals(""))  || EsComible(posicionNueva))) {
                return true;
-            } else if (posicionAbajoN.equals(posicionAbajo) && ((tablero[y2][x2].equals("SalidaB") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
+            } else if (posicionAbajoN.equals(posicionAbajo) && ((PuedeSalir(posicionAntigua, posicionNueva) || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
-            } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((tablero[y2][x2].equals("SalidaB") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
+            } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((PuedeSalir(posicionAntigua, posicionNueva) || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
-            } else if (posicionDerechaN.equals(posicionDerecha) && ((tablero[y2][x2].equals("SalidaB") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
+            } else if (posicionDerechaN.equals(posicionDerecha) && ((PuedeSalir(posicionAntigua, posicionNueva) || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
             } else {
             JOptionPane.showMessageDialog(null, "Movimiento invalido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -553,13 +556,13 @@ public class Controlador implements ActionListener {
         }
         
         if (turnoJugador=='B'){
-            if (posicionArribaN.equals(posicionArriba) && ((tablero[y2][x2].equals("SalidaA") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
+            if (posicionArribaN.equals(posicionArriba) && ((PuedeSalir(posicionAntigua, posicionNueva) || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
-            } else if (posicionAbajoN.equals(posicionAbajo) && ((tablero[y2][x2].equals("SalidaA") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
+            } else if (posicionAbajoN.equals(posicionAbajo) && ((PuedeSalir(posicionAntigua, posicionNueva) || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
-            } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((tablero[y2][x2].equals("SalidaA") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
+            } else if (posicionIzquierdaN.equals(posicionIzquierda) && ((PuedeSalir(posicionAntigua, posicionNueva) || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
-            } else if (posicionDerechaN.equals(posicionDerecha) && ((tablero[y2][x2].equals("SalidaA") || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
+            } else if (posicionDerechaN.equals(posicionDerecha) && ((PuedeSalir(posicionAntigua, posicionNueva) || tablero[y2][x2].equals("")) || EsComible(posicionNueva))) {
                 return true;
             }else {
             JOptionPane.showMessageDialog(null, "Movimiento invalido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -666,6 +669,42 @@ public class Controlador implements ActionListener {
         }  
         
          return false;
+    }
+    
+    private boolean PuedeSalir(String posicionAntigua, String posicionNueva) {
+        int x = Character.getNumericValue(posicionAntigua.charAt(1));
+        int y = Character.getNumericValue(posicionAntigua.charAt(0));
+        
+        int x2 = Character.getNumericValue(posicionNueva.charAt(1));
+        int y2 = Character.getNumericValue(posicionNueva.charAt(0));
+
+        if (turnoJugador=='A'){
+            if (tablero[y][x].equals("A_fantasmaBueno")) {
+                if (tablero[y2][x2].equals("SalidaB")) {
+                    return true;
+                }
+            }
+            if (tablero[y][x].equals("A_fantasmaMalo")) {
+                if (tablero[y2][x2].equals("SalidaB")) {
+            JOptionPane.showMessageDialog(null, "Los fantasmas malos no pueden salir del castillo", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } 
+        
+        if (turnoJugador=='B'){
+            if (tablero[y][x].equals("B_fantasmaBueno")) {
+                if (tablero[y2][x2].equals("SalidaA")) {
+                    return true;
+                }
+            }
+            if (tablero[y][x].equals("B_fantasmaMalo")) {
+                if (tablero[y2][x2].equals("SalidaA")) {
+            JOptionPane.showMessageDialog(null, "Los fantasmas malos no pueden salir del castillo", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }  
+         return false;
+
     }
     
     private boolean EsComible(String posicionNueva) {
@@ -788,12 +827,14 @@ public class Controlador implements ActionListener {
                     JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
+                    Batalla batalla =new Batalla(jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!");
                     juego.dispose();
                 }
                 if ((4-contadorBbuenos)==0) {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                     Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
+                    Batalla batalla =new Batalla(jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!");
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Expert")) {
@@ -801,12 +842,14 @@ public class Controlador implements ActionListener {
                     JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
+                    Batalla batalla =new Batalla(jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!");
                     juego.dispose();
                 }
                 if ((2-contadorBbuenos)==0) {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                     Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
+                    Batalla batalla =new Batalla( jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!");
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Genius")) {
@@ -814,12 +857,14 @@ public class Controlador implements ActionListener {
                         JOptionPane.showMessageDialog(null, jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                         Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
                         Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
+                        Batalla batalla =new Batalla( jugador2+" triunfo sobre "+jugador1+" porque capturó todos sus fantasmas buenos!");
                         juego.dispose();
                     }
                     if ((1-contadorBbuenos)==0) {
                         JOptionPane.showMessageDialog(null, jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                         Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
+                    Batalla batalla =new Batalla(jugador1+" triunfo sobre "+jugador2+" porque capturó todos sus fantasmas buenos!");
                         juego.dispose();
                     }
         }
@@ -831,12 +876,14 @@ public class Controlador implements ActionListener {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                     Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
+                    Batalla batalla =new Batalla(jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!");
                     juego.dispose();
                 }
                 if ((4-contadorBmalos)==0) {
                     JOptionPane.showMessageDialog(null,jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
+                    Batalla batalla =new Batalla(jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!");
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Expert")) {
@@ -844,12 +891,14 @@ public class Controlador implements ActionListener {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                     Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
+                    Batalla batalla =new Batalla(jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!");
                     juego.dispose();
                 }
                 if ((2-contadorBmalos)==0) {
                     JOptionPane.showMessageDialog(null,jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
+                    Batalla batalla =new Batalla(jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!");
                     juego.dispose();
                 }
         } else if (ModoJuego.getModoJuegoDif().equals("Genius")) {
@@ -857,12 +906,14 @@ public class Controlador implements ActionListener {
                     JOptionPane.showMessageDialog(null, jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                     Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
+                    Batalla batalla =new Batalla(jugador1+" triunfo porque "+jugador2+" le capturó todos sus fantasmas malos!");
                     juego.dispose();
                 }
                 if ((1-contadorBmalos)==0) {
                     JOptionPane.showMessageDialog(null,jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
+                    Batalla batalla =new Batalla(jugador2+" triunfo porque "+jugador1+" le capturó todos sus fantasmas malos!");
                     juego.dispose();
                 }
         }
@@ -883,6 +934,7 @@ public class Controlador implements ActionListener {
                 JOptionPane.showMessageDialog(null, jugador1+" triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                 Usuario.agregarPuntosAUsuario(jugador2, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador1, puntosGanador);
+                    Batalla batalla =new Batalla( jugador1+" triunfo al sacar del castillo un fantasma bueno contra "+jugador2);
                 juego.dispose();
            } 
            
@@ -890,6 +942,7 @@ public class Controlador implements ActionListener {
                 JOptionPane.showMessageDialog(null, jugador2+" triunfo al sacar del castillo un fantasma bueno!", "¡Ganaste!", JOptionPane.INFORMATION_MESSAGE);
                 Usuario.agregarPuntosAUsuario(jugador1, puntosPerdedor);
                     Usuario.agregarPuntosAUsuario(jugador2, puntosGanador);
+                    Batalla batalla =new Batalla( jugador2+" triunfo al sacar del castillo un fantasma bueno contra "+jugador1);
                 juego.dispose();
             } 
         }
@@ -1086,6 +1139,22 @@ public class Controlador implements ActionListener {
             Juego.Coor7.setVisible(false);
 
         }
+        
+        public String[] obtenerNombresUsuarios() {
+            ArrayList<String> nombresUsuarios = new ArrayList<>();
+            String jugadorLog = Usuario.getJugadorLog();
+
+            for (Usuario usuario : Usuario.getUsuarios()) {
+                if (!usuario.getUsername().equals(jugadorLog)) {
+                    nombresUsuarios.add(usuario.getUsername());
+                }
+            }
+
+            nombresUsuarios.add("Invitado");
+            return nombresUsuarios.toArray(new String[0]);
+        }
+        
+        
 }
  
      

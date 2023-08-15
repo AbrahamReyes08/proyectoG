@@ -48,7 +48,6 @@ public class Controlador implements ActionListener {
     private int contadorB=0;
     private int contadorC=8;
     
-    Movimientos movimientos;
     Random random = new Random();
     Juego juego=new Juego();
     
@@ -56,7 +55,6 @@ public class Controlador implements ActionListener {
         iniciarTablero();
         juego.setVisible(true);
         añadirActionEvents();
-        movimientos= new Movimientos();
         Juego.LabelTurno.setText(turno);
         cambiarInfoJugador();
         añadirFichasAPantalla();
@@ -73,13 +71,13 @@ public class Controlador implements ActionListener {
                         null,
                         "Seleccione el Jugador 2:",
                         "Seleccionar Jugador",
-                        JOptionPane.QUESTION_MESSAGE,
+                        JOptionPane.YES_NO_CANCEL_OPTION,
                         null,
                         opcionesUsuarios,
                         opcionesUsuarios[0]
                 );
                 
-                if (jugador2==null) {
+                if (jugador2.equals(JOptionPane.NO_OPTION) && jugador2==null) {
                         juego.dispose();
                     }
         } else {
@@ -300,21 +298,6 @@ public class Controlador implements ActionListener {
         cambiarInfoJugador();
         comprobarGane1();
         comprobarGane2();
-    }
- 
-    public boolean esPosibleEsteMovimiento(String posicionAntigua, String posicionNueva) {
-        String [] posicionesPosibles;
-        
-        posicionesPosibles  = movimientos.moverFicha(tablero,posicionAntigua);
-        if(posicionesPosibles!=null) {
-            for (int i=0; i<posicionesPosibles.length;i++){
-                if(posicionesPosibles[i].equals(posicionNueva)) {
-                    return true;
-                }
-            }    
-        }
-        
-        return false;
     }
     
     private void cambiarFichas(String posAntigua, String posNueva) {
